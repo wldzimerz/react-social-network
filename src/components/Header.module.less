@@ -1,0 +1,59 @@
+.header {
+  grid-area: header;
+  box-sizing: border-box;
+  background: rgb(233, 117, 117);
+  margin: 0px 25px 0px 0px;
+  padding: 25px;
+  width: 100%;
+  .icon {
+    height: 24px;
+    width: 24px;
+  }
+  .firstlane {
+    display: flex;
+    .greeting {
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .navbar {
+      margin: 0px 0px 0px auto;
+      .icon {
+        margin: -4px 5px -6px;
+      }
+      .search {
+        margin: 0px 0px 0px 5px;
+        height: 30px;
+        box-sizing: border-box;
+        padding: 10px;
+      }
+    }
+  }
+  .noteadd {
+    margin: 20px 0px 20px 0px;
+    .noteinput {
+      box-sizing: border-box;
+      padding: 15px;
+      width: 100%;
+      height: 70px;
+    }
+  }
+  .categories {
+    display: flex;
+    .selector {
+      margin: 0px 15px;
+      border: 1px solid black;
+      border-radius: 35px;
+      padding: 12px;
+      background-color: rgb(153, 153, 153);
+      font-weight: bold;
+      &:hover {
+        background-color: rgb(218, 218, 218);
+        cursor: pointer;
+      }
+    }
+    .icon {
+      margin: auto 0;
+      border: none;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+.container {
+  grid-area: container;
+  box-sizing: border-box;
+  width: 100%;
+}
+.container .posts {
+  background-color: #568173;
+  padding: 25px;
+}
+.container .posts .post {
+  margin: 20px 0px;
+  background-color: #01cbcb;
+  box-sizing: border-box;
+  padding: 20px;
+}
+.container .posts .group {
+  display: flex;
+}
+.container .posts .group .groupphoto {
+  width: 60px;
+  height: 60px;
+}
+.container .posts .group .groupinfo {
+  margin: auto 25px;
+}
+.container .posts .group .groupinfo .groupname {
+  font-size: 20px;
+  font-weight: bold;
+}
+.container .posts .group .groupinfo .posttime {
+  color: #5e5e5e;
+  font-size: 14px;
+}
+.container .posts .text {
+  margin: 15px 0px 0px 0px;
+  line-height: 24px;
+}
+.container .posts .text .more {
+  color: #ceffff;
+}
+.container .posts .text .postimage {
+  width: 100%;
+  margin: 15px 0px;
+}
+.container .posts .activities {
+  display: flex;
+  margin: 0px auto;
+  width: 200px;
+}
+.container .posts .activities .icon {
+  width: 18px;
+  height: 18px;
+}
+.container .posts .activities p {
+  font-size: 14px;
+  margin: auto 15px;
+}
