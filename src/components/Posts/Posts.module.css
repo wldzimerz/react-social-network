@@ -1,0 +1,9 @@
+.container {
+  grid-area: container;
+  box-sizing: border-box;
+  width: 100%;
+}
+.container .posts {
+  background-color: #568173;
+  padding: 25px;
+}

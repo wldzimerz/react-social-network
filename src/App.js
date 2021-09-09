@@ -1,11 +1,10 @@
 // import logo from "./logo.svg";
 import "./App.css";
-// import Technologies from "./Technologies";
-import Header from "./components/Header";
-import Navigation from "./components/Navigation";
-import Posts from "./components/Posts";
+import Header from "./components/Header/Header.js";
+import Navigation from "./components/Navigation/Navigation.js";
+import Posts from "./components/Posts/Posts.js";
 
-function App() {
+const App = () => {
   return (
     <div className="wrapper">
       <Header />
@@ -13,6 +12,6 @@ function App() {
       <Posts />
     </div>
   );
-}
+};
 
 export default App;
