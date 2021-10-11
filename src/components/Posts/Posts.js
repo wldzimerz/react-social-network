@@ -1,9 +1,12 @@
-import s from "./Posts.module.css";
 import Post from "./Post/Post.js";
+import Header from "./../Header/Header";
+
+import s from "./Posts.module.css";
 
 const Posts = () => {
   return (
-    <main className={s.container}>
+    <>
+      <Header />
       <div className={s.posts}>
         <Post
           groupname="LIFEHACKS"
@@ -26,7 +29,7 @@ const Posts = () => {
           postimage="https://live.staticflickr.com/4690/38621318665_7799a0f180_b.jpg"
         />
       </div>
-    </main>
+    </>
   );
 };
 

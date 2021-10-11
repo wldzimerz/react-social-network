@@ -1,16 +1,24 @@
-// import logo from "./logo.svg";
-import "./App.css";
-import Header from "./components/Header/Header.js";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 import Navigation from "./components/Navigation/Navigation.js";
 import Posts from "./components/Posts/Posts.js";
+import Messages from "./components/Messages/Messages";
+
+import "./App.css";
 
 const App = () => {
   return (
-    <div className="wrapper">
-      <Header />
-      <Navigation />
-      <Posts />
-    </div>
+    <BrowserRouter>
+      <div className="wrapper">
+        <Navigation />
+        <div className="container">
+          <Switch>
+            <Route path="/news" exact component={Posts} />
+            <Route path="/messages" component={Messages} />
+          </Switch>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 };
 

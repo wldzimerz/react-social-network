@@ -1,0 +1,20 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-areas:
+    "navigation container"
+    "navigation container";
+  grid-template-rows: 1fr;
+  grid-template-columns: 2fr 10fr;
+  margin: 0px auto;
+  width: 1200px;
+  .container {
+    grid-area: container;
+    box-sizing: border-box;
+    width: 100%;
+  }
+}

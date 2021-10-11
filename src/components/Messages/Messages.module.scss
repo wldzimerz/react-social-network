@@ -6,7 +6,7 @@
 .wrapper {
   display: grid;
   grid-template-areas:
-    "navigation header"
+    "navigation head"
     "navigation container";
   grid-template-rows: 1fr;
   grid-template-columns: 2fr 10fr;

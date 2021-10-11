@@ -1,0 +1,24 @@
+.menu {
+  grid-area: head;
+  display: flex;
+  background-color: #915fb9;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+  color: #ffffff;
+}
+.menu li {
+  flex: 1;
+  text-align: center;
+  margin: auto;
+  padding: auto;
+  opacity: 0.6;
+  line-height: 50px;
+  list-style: none;
+  transition: all 0.3s ease-out;
+}
+.menu li:hover {
+  opacity: 1;
+  background-color: #55376d;
+  cursor: pointer;
+}

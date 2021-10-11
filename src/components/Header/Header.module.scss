@@ -1,7 +1,6 @@
 .header {
-  grid-area: header;
   box-sizing: border-box;
-  background: rgb(233, 117, 117);
+  background: #dadada;
   margin: 0px 25px 0px 0px;
   padding: 25px;
   width: 100%;
@@ -14,6 +13,7 @@
     .greeting {
       font-size: 22px;
       font-weight: bold;
+      letter-spacing: 1px;
     }
     .navbar {
       margin: 0px 0px 0px auto;
@@ -41,14 +41,16 @@
     display: flex;
     .selector {
       margin: 0px 15px;
-      border: 1px solid black;
       border-radius: 35px;
       padding: 12px;
-      background-color: rgb(153, 153, 153);
+      background-color: #d9c9e6;
       font-weight: bold;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 6px 6px 10px -4px rgba(0, 0, 0, 0.3);
       &:hover {
-        background-color: rgb(218, 218, 218);
+        background-color: #d0c4da;
         cursor: pointer;
+        box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.1);
       }
     }
     .icon {

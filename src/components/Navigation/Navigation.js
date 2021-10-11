@@ -11,15 +11,33 @@ const Navigation = () => {
         <div className={s.username}>wldzimerz</div>
       </div>
       <div className={s.links}>
-        <li>My profile</li>
-        <li>News</li>
-        <li>Friends</li>
-        <li>Messages</li>
-        <li>Community</li>
-        <li>Photo</li>
-        <li>Video</li>
-        <li>Audio</li>
-        <li>Settings</li>
+        <li>
+          <a href="/profile">My profile</a>
+        </li>
+        <li>
+          <a href="/news">News</a>
+        </li>
+        <li>
+          <a href="/profile">Friends</a>
+        </li>
+        <li>
+          <a href="/profile">Messages</a>
+        </li>
+        <li>
+          <a href="/profile">Community</a>
+        </li>
+        <li>
+          <a href="/profile">Photo</a>
+        </li>
+        <li>
+          <a href="/profile">Video</a>
+        </li>
+        <li>
+          <a href="/profile">Audio</a>
+        </li>
+        <li>
+          <a href="/profile">Settings</a>
+        </li>
       </div>
     </nav>
   );
