@@ -4,12 +4,12 @@
 }
 
 .wrapper {
-  display: grid;
-  grid-template-areas:
-    "navigation head"
-    "navigation container";
-  grid-template-rows: 1fr;
-  grid-template-columns: 2fr 10fr;
+  grid-area: container;
+  // grid-template-areas:
+  // "navigation head"
+  // "navigation container";
+  // grid-template-rows: 1fr;
+  // grid-template-columns: 2fr 10fr;
   margin: 0px auto;
-  width: 1200px;
+  // width: 1200px;
 }

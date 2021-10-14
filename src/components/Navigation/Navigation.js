@@ -1,4 +1,45 @@
+import { NavLink } from "react-router-dom";
+
 import s from "./Navigation.module.css";
+
+const PAGES = [
+  {
+    page: "My profile",
+    to: "/profile",
+  },
+  {
+    page: "News",
+    to: "/news",
+  },
+  {
+    page: "Friedns",
+    to: "/friedns",
+  },
+  {
+    page: "Messages",
+    to: "/messages",
+  },
+  {
+    page: "Community",
+    to: "/community",
+  },
+  {
+    page: "Photo",
+    to: "/photo",
+  },
+  {
+    page: "Video",
+    to: "/video",
+  },
+  {
+    page: "Audio",
+    to: "/audio",
+  },
+  {
+    page: "Settings",
+    to: "/settings",
+  },
+];
 
 const Navigation = () => {
   return (
@@ -11,33 +52,15 @@ const Navigation = () => {
         <div className={s.username}>wldzimerz</div>
       </div>
       <div className={s.links}>
-        <li>
-          <a href="/profile">My profile</a>
-        </li>
-        <li>
-          <a href="/news">News</a>
-        </li>
-        <li>
-          <a href="/profile">Friends</a>
-        </li>
-        <li>
-          <a href="/profile">Messages</a>
-        </li>
-        <li>
-          <a href="/profile">Community</a>
-        </li>
-        <li>
-          <a href="/profile">Photo</a>
-        </li>
-        <li>
-          <a href="/profile">Video</a>
-        </li>
-        <li>
-          <a href="/profile">Audio</a>
-        </li>
-        <li>
-          <a href="/profile">Settings</a>
-        </li>
+        <ul>
+          {PAGES.map(({ page, to }) => (
+            <li>
+              <NavLink to={to} activeClassName={s.active}>
+                {page}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
       </div>
     </nav>
   );
