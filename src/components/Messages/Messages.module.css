@@ -1,9 +1,75 @@
-* {
-  margin: 0px;
-  padding: 0px;
+.dialogs {
+  padding: 35px 25px;
+  height: 100vh;
+}
+.dialogs .head {
+  display: flex;
+  padding: 0 15px 5px;
+}
+.dialogs .head .search {
+  width: 250px;
+  outline: none;
+  border: none;
+  padding: 5px;
+}
+.dialogs .head .leftSide {
+  margin: 0 0 0 auto;
+}
+.dialogs .head .leftSide .addChat {
+  padding: 3px;
+  margin-right: 7px;
+}
+.dialogs .head .leftSide .icon {
+  height: 24px;
+  width: 24px;
+  margin: -5px 5px -6px;
 }
 
-.wrapper {
-  grid-area: container;
-  margin: 0px auto;
+.chat {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+}
+.chat .blockname {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+.chat .users {
+  padding: 15px;
+}
+.chat .users .user {
+  background-color: #d8d8d8;
+  margin: 10px 0;
+  padding: 10px;
+  display: block;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease-in;
+}
+.chat .users .user .photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  margin: 5px;
+  float: left;
+}
+.chat .users .user .name {
+  font-weight: bold;
+}
+.chat .users .user .time {
+  color: #8c8c8c;
+  float: right;
+}
+.chat .users .user .msg {
+  color: #5e5e5e;
+  margin: 10px 0 0 0;
+  opacity: 0.8;
+}
+.chat .users .user.active {
+  color: #9760c4;
+}
+.chat .users .user:hover {
+  box-shadow: -3px 0px 0px 0px #9760c4;
+}
+.chat .messages {
+  padding: 15px;
 }

@@ -1,7 +1,6 @@
 .menu {
-  grid-area: head;
   display: flex;
-  background-color: #915fb9;
+  background-color: #9760c4;
   height: -webkit-min-content;
   height: -moz-min-content;
   height: min-content;

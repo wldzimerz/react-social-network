@@ -9,9 +9,9 @@ import "./App.css";
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="wrapper">
+      <div className="app-wrapper">
         <Navigation />
-        <div className="container">
+        <div className="app-container">
           <Switch>
             <Route path="/news" exact component={Posts} />
             <Route path="/messages" component={Messages} />

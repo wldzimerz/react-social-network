@@ -3,18 +3,20 @@
   padding: 0px;
 }
 
-.wrapper {
+.app-wrapper {
   display: grid;
   grid-template-areas:
     "navigation container"
     "navigation container";
-  grid-template-rows: 1fr;
   grid-template-columns: 2fr 10fr;
   margin: 0px auto;
-  width: 1200px;
-  .container {
+  width: 98vw;
+  height: 100vh;
+  .app-container {
     grid-area: container;
     box-sizing: border-box;
     width: 100%;
+    height: 100vh;
+    background-color: #e9e9e9;
   }
 }
