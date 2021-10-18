@@ -53,8 +53,8 @@ const Navigation = () => {
       </div>
       <div className={s.links}>
         <ul>
-          {PAGES.map(({ page, to }) => (
-            <li>
+          {PAGES.map(({ page, to }, index) => (
+            <li key={index}>
               <NavLink to={to} activeClassName={s.active}>
                 {page}
               </NavLink>

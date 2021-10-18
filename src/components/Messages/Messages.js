@@ -1,3 +1,4 @@
+import { NavLink, useRouteMatch } from "react-router-dom";
 import s from "./Messages.module.css";
 
 const USERS = [
@@ -8,13 +9,44 @@ const USERS = [
   { img: "../../../assets/Alex.jpg", name: "Alex", time: "18:50", msg: "good luck" },
 ];
 
+const MESSAGES = [
+  { text: "Hi", time: "" },
+  { text: "How are you", time: "" },
+  { text: "I`m dev the social media network", time: "" },
+  { text: "that's cool!", time: "" },
+  { text: "good luck", time: "" },
+];
+
+const UserChat = ({ to, img, time, name, msg, index }) => {
+  return (
+    <>
+      <NavLink to={to} key={index} className={s.user} activeClassName={s.active}>
+        <img src={img} className={s.photo} alt="avatar" />
+        <div className={s.time}>{time}</div>
+        <div className={s.name}>{name}</div>
+        <div className={s.msg}>{msg}</div>
+      </NavLink>
+    </>
+  );
+};
+
+const UserMessage = ({ text }) => {
+  return (
+    <>
+      <div className={s.message}>{text}</div>
+    </>
+  );
+};
+
 const Messages = () => {
+  const match = useRouteMatch();
+
   return (
     <div className={s.dialogs}>
       <div className={s.head}>
         <input className={s.search} placeholder="Search..." />
         <div className={s.leftSide}>
-          <button className={s.addChat}>+ Add new</button>
+          <button className={s.addChatBtn}>+ Add new</button>
           <img src="https://image.flaticon.com/icons/png/512/88/88042.png" alt="messages" className={s.icon} />
           <img src="https://image.flaticon.com/icons/png/512/77/77682.png" alt="notifications" className={s.icon} />
         </div>
@@ -22,22 +54,15 @@ const Messages = () => {
       <div className={s.chat}>
         <div className={s.users}>
           <div className={s.blockname}>Chat</div>
-          {USERS.map(({ img, name, time, msg }) => (
-            <div className={s.user}>
-              <img src={img} className={s.photo} alt="avatar" />
-              <div className={s.time}>{time}</div>
-              <div className={s.name}>{name}</div>
-              <div className={s.msg}>{msg}</div>
-            </div>
+          {USERS.map((obj, index) => (
+            <UserChat to={`${match.url}/${index + 1}`} img={obj.img} time={obj.time} name={obj.name} msg={obj.msg} key={index} index />
           ))}
         </div>
         <div className={s.messages}>
           <div className={s.blockname}>NAME</div>
-          <div className={s.message}>Hi</div>
-          <div className={s.message}>How are you</div>
-          <div className={s.message}>I`m dev the social media network</div>
-          <div className={s.message}>that's cool!</div>
-          <div className={s.message}>good luck</div>
+          {MESSAGES.map((obj, index) => (
+            <UserMessage text={obj.text} key={index} />
+          ))}
         </div>
       </div>
     </div>
