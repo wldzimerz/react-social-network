@@ -5,7 +5,7 @@ import Posts from "./components/Posts/Posts.js";
 import Messages from "./components/Messages/Messages";
 import Profile from "./components/Profile/Profile.js";
 
-import "./App.css";
+import "./App.scss";
 
 const App = () => {
   return (

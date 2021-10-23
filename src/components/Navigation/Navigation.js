@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-import s from "./Navigation.module.css";
+import s from "./Navigation.module.scss";
 
 const PAGES = [
   {

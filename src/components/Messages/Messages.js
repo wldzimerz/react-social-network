@@ -1,5 +1,5 @@
 import { NavLink, useRouteMatch } from "react-router-dom";
-import s from "./Messages.module.css";
+import s from "./Messages.module.scss";
 
 const USERS = [
   { img: "../../../assets/Denis.jpg", name: "Denis", time: "12:51", msg: "OK, got it!" },

@@ -1,7 +1,7 @@
 import Post from "./Post/Post.js";
 import Header from "./../Header/Header";
 
-import s from "./Posts.module.css";
+import s from "./Posts.module.scss";
 
 const Posts = () => {
   return (

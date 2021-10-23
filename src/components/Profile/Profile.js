@@ -1,4 +1,4 @@
-import s from "./Profile.module.css";
+import s from "./Profile.module.scss";
 
 const POSTDATA = [
   { text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. ", time: "09:15", likes: 0 },
@@ -62,7 +62,7 @@ const Profile = () => {
             <div className={s.item}>Friends: {obj.friends}</div>
             <div className={s.item}>
               Website:&nbsp;
-              <a href={obj.website} target="_blank">
+              <a href={obj.website} target="_blank" rel="noopener noreferrer">
                 Visit website
               </a>
             </div>
