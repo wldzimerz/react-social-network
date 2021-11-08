@@ -3,19 +3,19 @@
   grid-template-areas:
     "head head"
     "posts user";
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 3.5fr 1fr;
   grid-template-rows: 60px;
   height: 100vh;
-  padding: 35px 25px;
 }
 
 .head {
   grid-area: head;
   display: flex;
   .name {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     letter-spacing: 1px;
+    text-transform: uppercase;
   }
   .subscribeBtn {
     margin: 0 0 auto auto;
@@ -40,22 +40,24 @@
   .newPost {
     height: 10vh;
     margin: 10px 0 0 0;
-    background-color: #bfb1ff;
     display: inline-flex;
     width: 100%;
     position: relative;
-    input {
+    textarea {
+      font-family: inherit;
+      resize: none;
       width: 100%;
-      padding: 3%;
-      outline: 0.5px;
-      border: none;
+      padding: 10px;
+      outline: none;
+      border-radius: 5px;
       font-size: 16px;
     }
     .addPostBtn {
       position: absolute;
+      height: 35px;
       top: 32%;
+      bottom: 35%;
       right: 3%;
-      margin: auto 0;
       padding: 10px;
       color: #ffffff99;
       background-color: #9760c4;
@@ -68,45 +70,15 @@
     }
   }
   .earlyPosts {
+    display: flex;
+    flex-direction: column-reverse;
     padding: 10px 0;
-    .postWrap {
-      display: flex;
-      flex-direction: column;
-      background-color: #d8d8d8;
-      margin: 15px 0;
-      padding: 10px 10px 15px 10px;
-      height: 5vh;
-      border-radius: 5px;
-      &:first-child {
-        box-shadow: 1px 1px 4px 0 #9760c4;
-      }
-      .text {
-        display: flex;
-        margin-bottom: 10px;
-        .time {
-          font-size: 12px;
-          margin: auto 0 auto auto;
-          opacity: 0.8;
-        }
-      }
-      .likes {
-        display: flex;
-        .icon {
-          margin: auto auto auto 5px;
-          width: 16px;
-          height: 16px;
-          &:hover {
-            cursor: pointer;
-          }
-        }
-      }
-    }
   }
 }
 
 .about {
   grid-area: user;
-  padding: 30px 0 0;
+  padding: 35px 0 0;
   .item {
     font-size: 14px;
     padding: 5px;
@@ -115,7 +87,7 @@
     a:visited {
       font-weight: bold;
       text-decoration: none;
-      color: initial;
+      color: inherit;
     }
   }
   .edit {

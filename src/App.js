@@ -1,26 +1,24 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
-import Navigation from "./components/Navigation/Navigation.js";
-import Posts from "./components/Posts/Posts.js";
+import Navigation from "./components/Navigation/Navigation";
+import Posts from "./components/Posts/Posts";
 import Messages from "./components/Messages/Messages";
-import Profile from "./components/Profile/Profile.js";
+import Profile from "./components/Profile/Profile";
 
 import "./App.scss";
 
-const App = () => {
+const App = ({ appStore }) => {
   return (
-    <BrowserRouter>
-      <div className="app-wrapper">
-        <Navigation />
-        <div className="app-container">
-          <Switch>
-            <Route path="/profile" component={Profile} />
-            <Route path="/news" component={Posts} />
-            <Route path="/messages" component={Messages} />
-          </Switch>
-        </div>
+    <div className="app-wrapper">
+      <Navigation />
+      <div className="app-container">
+        <Switch>
+          <Route path="/profile" render={() => <Profile POSTDATA={appStore.POSTDATA} USERINFO={appStore.USERINFO} />} />
+          <Route path="/news" render={() => <Posts />} />
+          <Route path="/messages" render={() => <Messages MESSAGES={appStore.MESSAGES} USERS={appStore.USERS} />} />
+        </Switch>
       </div>
-    </BrowserRouter>
+    </div>
   );
 };
 

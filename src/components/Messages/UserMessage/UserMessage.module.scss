@@ -1,0 +1,17 @@
+.message {
+  background: #fafafa;
+  box-sizing: border-box;
+  width: 18vw;
+  border-radius: 20px;
+  box-shadow: 1px 1px 4px 0 #a5a5a5;
+  &:nth-child(odd) {
+    padding: 10px 15px 10px 10px;
+    text-align: right;
+    margin: 10px 0 10px auto;
+  }
+  &:nth-child(even) {
+    text-align: left;
+    padding: 10px 10px 10px 15px;
+    margin: 0 0 10px 0;
+  }
+}

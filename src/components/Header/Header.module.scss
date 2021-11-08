@@ -1,8 +1,6 @@
 .header {
   box-sizing: border-box;
-  margin: 0px 25px 0px 0px;
-  padding: 25px;
-  width: 100%;
+  padding: 0 0 25px 0;
   .icon {
     height: 24px;
     width: 24px;
@@ -15,7 +13,7 @@
       letter-spacing: 1px;
     }
     .navbar {
-      margin: 0px 0px 0px auto;
+      margin: 0 0 0 auto;
       .icon {
         margin: -4px 5px -6px;
       }
@@ -28,7 +26,7 @@
     }
   }
   .noteadd {
-    margin: 20px 0px 20px 0px;
+    margin: 20px 0;
     .noteinput {
       box-sizing: border-box;
       padding: 15px;
@@ -39,7 +37,7 @@
   .categories {
     display: flex;
     .selector {
-      margin: 0px 15px;
+      margin: 0 15px;
       border-radius: 35px;
       padding: 12px;
       background-color: #d9c9e6;
@@ -49,7 +47,7 @@
       &:hover {
         background-color: #d0c4da;
         cursor: pointer;
-        box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.1);
+        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.1);
       }
     }
     .icon {
