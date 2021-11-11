@@ -1,25 +1,23 @@
-import React from "react";
+import { useRef } from "react";
 import { useRouteMatch } from "react-router-dom";
 
 import UserMessage from "./UserMessage/UserMessage";
 import UserChat from "./UserChat/UserChat";
-import { UpdateState } from "./../../redux/state";
 
 import s from "./Messages.module.scss";
 
-const Messages = ({ MESSAGES, USERS }) => {
+const Messages = ({ store }) => {
   const match = useRouteMatch();
+  const newMessageText = useRef(null);
 
-  const update = new UpdateState();
+  const stateGetter = store.getState();
 
   const handleSendMessage = () => {
     if (newMessageText.current.value) {
-      update.updateMessages(newMessageText.current.value);
+      store.updateMessages(newMessageText.current.value);
       newMessageText.current.value = "";
     }
   };
-
-  const newMessageText = React.createRef();
 
   return (
     <div className={s.dialogs}>
@@ -34,14 +32,14 @@ const Messages = ({ MESSAGES, USERS }) => {
       <div className={s.chat}>
         <div className={s.users}>
           <div className={s.blockname}>Chat</div>
-          {USERS.map((obj, index) => (
+          {stateGetter.USERS.map((obj, index) => (
             <UserChat to={`${match.url}/${index + 1}`} img={obj.img} time={obj.time} name={obj.name} msg={obj.msg} key={index} index />
           ))}
         </div>
         <div className={s.messages}>
           <div className={s.blockname}>NAME</div>
           <div className={s.messagesContainer}>
-            {MESSAGES.map((obj, index) => (
+            {stateGetter.MESSAGES.map((obj, index) => (
               <UserMessage text={obj.text} key={index} />
             ))}
           </div>

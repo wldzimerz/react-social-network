@@ -55,6 +55,7 @@
       overflow-x: auto;
       width: 100%;
       height: 77%;
+      scroll-snap-type: mandatory y;
     }
     .sendMessageArea {
       position: absolute;

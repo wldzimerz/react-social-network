@@ -6,11 +6,11 @@ import App from "./App";
 
 import "./index.css";
 
-export const rerenderEntireTree = (state) => {
+export const rerenderEntireTree = (store) => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App appStore={state} />
+        <App store={store} />
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById("root")

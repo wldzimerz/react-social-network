@@ -1,21 +1,23 @@
-import React from "react";
+import { useRef } from "react";
 
 import ProfilePost from "./ProfilePost/ProfilePost";
-import { UpdateState } from "./../../redux/state";
 
 import s from "./Profile.module.scss";
 
-const Profile = ({ POSTDATA, USERINFO }) => {
-  const update = new UpdateState();
+const Profile = ({ store }) => {
+  const newPostContent = useRef(null);
+
+  const stateGetter = store.getState();
 
   const handleAddPost = () => {
     if (newPostContent.current.value) {
-      update.updatePostdata(newPostContent.current.value);
-      newPostContent.current.value = "";
+      store.updatePostdata();
     }
   };
 
-  const newPostContent = React.createRef();
+  const handleTextareaChange = () => {
+    store.changeTextAreaValue(newPostContent.current.value);
+  };
 
   return (
     <>
@@ -27,18 +29,18 @@ const Profile = ({ POSTDATA, USERINFO }) => {
         <div className={s.profilePosts}>
           <div className={s.question}>What's new?</div>
           <div className={s.newPost}>
-            <textarea type="text" placeholder="Write something..." ref={newPostContent} />
+            <textarea onChange={handleTextareaChange} type="text" ref={newPostContent} value={stateGetter.newPostText} />
             <button className={s.addPostBtn} onClick={handleAddPost}>
               Add post
             </button>
           </div>
           <div className={s.earlyPosts}>
-            {POSTDATA.map((obj, index) => (
+            {stateGetter.POSTDATA.map((obj, index) => (
               <ProfilePost text={obj.text} time={obj.time} likes={obj.likes} key={index} />
             ))}
           </div>
         </div>
-        {USERINFO.map((obj, index) => (
+        {stateGetter.USERINFO.map((obj, index) => (
           <div className={s.about} key={index}>
             {/* <img src={obj.photo} className={s.photo} /> */}
             <div className={s.item}>Location: {obj.location}</div>

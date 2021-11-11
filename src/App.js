@@ -7,15 +7,15 @@ import Profile from "./components/Profile/Profile";
 
 import "./App.scss";
 
-const App = ({ appStore }) => {
+const App = ({ store }) => {
   return (
     <div className="app-wrapper">
       <Navigation />
       <div className="app-container">
         <Switch>
-          <Route path="/profile" render={() => <Profile POSTDATA={appStore.POSTDATA} USERINFO={appStore.USERINFO} />} />
+          <Route path="/profile" render={() => <Profile store={store} />} />
           <Route path="/news" render={() => <Posts />} />
-          <Route path="/messages" render={() => <Messages MESSAGES={appStore.MESSAGES} USERS={appStore.USERS} />} />
+          <Route path="/messages" render={() => <Messages store={store} />} />
         </Switch>
       </div>
     </div>
