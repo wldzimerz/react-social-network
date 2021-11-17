@@ -1,22 +1,16 @@
-import { useRef } from "react";
-
 import ProfilePost from "./ProfilePost/ProfilePost";
 
 import s from "./Profile.module.scss";
 
 const Profile = ({ store }) => {
-  const newPostContent = useRef(null);
-
-  const stateGetter = store.getState();
+  const stateGetter = store.getState().profile;
 
   const handleAddPost = () => {
-    if (newPostContent.current.value) {
-      store.updatePostdata();
-    }
+    store.dispatch({ type: "ADD-POST" });
   };
 
-  const handleTextareaChange = () => {
-    store.changeTextAreaValue(newPostContent.current.value);
+  const handleTextareaChange = (e) => {
+    store.dispatch({ type: "UPDATE-NEW-POST-TEXT", value: e.target.value });
   };
 
   return (
@@ -29,7 +23,7 @@ const Profile = ({ store }) => {
         <div className={s.profilePosts}>
           <div className={s.question}>What's new?</div>
           <div className={s.newPost}>
-            <textarea onChange={handleTextareaChange} type="text" ref={newPostContent} value={stateGetter.newPostText} />
+            <textarea onChange={handleTextareaChange} type="text" value={stateGetter.newPostText} />
             <button className={s.addPostBtn} onClick={handleAddPost}>
               Add post
             </button>

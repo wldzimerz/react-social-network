@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { useRouteMatch } from "react-router-dom";
 
 import UserMessage from "./UserMessage/UserMessage";
@@ -8,15 +7,15 @@ import s from "./Messages.module.scss";
 
 const Messages = ({ store }) => {
   const match = useRouteMatch();
-  const newMessageText = useRef(null);
 
-  const stateGetter = store.getState();
+  const stateGetter = store.getState().dialogs;
+
+  const handleChangeMessage = (e) => {
+    store.dispatch({ type: "UPDATE-NEW-MESSAGE-TEXT", value: e.target.value });
+  };
 
   const handleSendMessage = () => {
-    if (newMessageText.current.value) {
-      store.updateMessages(newMessageText.current.value);
-      newMessageText.current.value = "";
-    }
+    store.dispatch({ type: "SEND-MESSAGE" });
   };
 
   return (
@@ -44,7 +43,7 @@ const Messages = ({ store }) => {
             ))}
           </div>
           <div className={s.sendMessageArea}>
-            <textarea type="text" placeholder="Write a message..." ref={newMessageText} />
+            <textarea type="text" placeholder="Write a message..." value={stateGetter.newMessageText} onChange={handleChangeMessage} />
             <button className={s.sendMsgBtn} onClick={handleSendMessage}>
               Send
             </button>
