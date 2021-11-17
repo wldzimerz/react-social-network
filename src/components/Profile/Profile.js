@@ -3,7 +3,7 @@ import ProfilePost from "./ProfilePost/ProfilePost";
 import s from "./Profile.module.scss";
 
 const Profile = ({ store }) => {
-  const stateGetter = store.getState().profile;
+  const state = store.getState().profilePage;
 
   const handleAddPost = () => {
     store.dispatch({ type: "ADD-POST" });
@@ -23,18 +23,18 @@ const Profile = ({ store }) => {
         <div className={s.profilePosts}>
           <div className={s.question}>What's new?</div>
           <div className={s.newPost}>
-            <textarea onChange={handleTextareaChange} type="text" value={stateGetter.newPostText} />
+            <textarea onChange={handleTextareaChange} type="text" value={state.newPostText} />
             <button className={s.addPostBtn} onClick={handleAddPost}>
               Add post
             </button>
           </div>
           <div className={s.earlyPosts}>
-            {stateGetter.POSTDATA.map((obj, index) => (
+            {state.POSTDATA.map((obj, index) => (
               <ProfilePost text={obj.text} time={obj.time} likes={obj.likes} key={index} />
             ))}
           </div>
         </div>
-        {stateGetter.USERINFO.map((obj, index) => (
+        {state.USERINFO.map((obj, index) => (
           <div className={s.about} key={index}>
             {/* <img src={obj.photo} className={s.photo} /> */}
             <div className={s.item}>Location: {obj.location}</div>
