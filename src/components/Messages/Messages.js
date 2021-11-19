@@ -1,26 +1,12 @@
 import { useRouteMatch } from "react-router-dom";
-import { useContext } from "react";
 
-import storeContext from "./../context/storeContext";
 import UserMessage from "./UserMessage/UserMessage";
 import UserChat from "./UserChat/UserChat";
 
 import s from "./Messages.module.scss";
 
-const Messages = () => {
-  const store = useContext(storeContext);
-
+const Messages = ({ dialogsPage: state, handleChangeMessage, handleSendMessage }) => {
   const match = useRouteMatch();
-
-  const state = store.getState().dialogsPage;
-
-  const handleChangeMessage = (e) => {
-    store.dispatch({ type: "UPDATE-NEW-MESSAGE-TEXT", value: e.target.value });
-  };
-
-  const handleSendMessage = () => {
-    store.dispatch({ type: "SEND-MESSAGE" });
-  };
 
   return (
     <div className={s.dialogs}>
@@ -47,8 +33,22 @@ const Messages = () => {
             ))}
           </div>
           <div className={s.sendMessageArea}>
-            <textarea type="text" placeholder="Write a message..." value={state.newMessageText} onChange={handleChangeMessage} />
-            <button className={s.sendMsgBtn} onClick={handleSendMessage}>
+            <textarea
+              type="text"
+              placeholder="Write a message..."
+              value={state.newMessageText}
+              onChange={(e) => {
+                handleChangeMessage(e.target.value);
+              }}
+            />
+            <button
+              className={s.sendMsgBtn}
+              onClick={() => {
+                if (state.newMessageText) {
+                  handleSendMessage();
+                }
+              }}
+            >
               Send
             </button>
           </div>

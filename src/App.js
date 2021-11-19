@@ -1,27 +1,27 @@
 import { Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
 
-import storeContext from "./components/context/storeContext";
 import Navigation from "./components/Navigation/Navigation";
 import Posts from "./components/Posts/Posts";
-import Messages from "./components/Messages/Messages";
-import Profile from "./components/Profile/Profile";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import MessagesContainer from "./components/Messages/MessagesContainer";
 
 import "./App.scss";
 
 const App = ({ store }) => {
   return (
-    <storeContext.Provider value={store}>
+    <Provider store={store}>
       <div className="app-wrapper">
         <Navigation />
         <div className="app-container">
           <Switch>
-            <Route path="/profile" render={() => <Profile />} />
+            <Route path="/profile" render={() => <ProfileContainer />} />
             <Route path="/news" render={() => <Posts />} />
-            <Route path="/messages" render={() => <Messages />} />
+            <Route path="/messages" render={() => <MessagesContainer />} />
           </Switch>
         </div>
       </div>
-    </storeContext.Provider>
+    </Provider>
   );
 };
 

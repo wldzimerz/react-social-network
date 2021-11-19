@@ -1,23 +1,8 @@
-import { useContext } from "react";
-
-import storeContext from "./../context/storeContext";
 import ProfilePost from "./ProfilePost/ProfilePost";
 
 import s from "./Profile.module.scss";
 
-const Profile = () => {
-  const store = useContext(storeContext);
-
-  const state = store.getState().profilePage;
-
-  const handleAddPost = () => {
-    store.dispatch({ type: "ADD-POST" });
-  };
-
-  const handleTextareaChange = (e) => {
-    store.dispatch({ type: "UPDATE-NEW-POST-TEXT", value: e.target.value });
-  };
-
+const Profile = ({ profilePage: state, handleChangeTextArea, handleAddPost }) => {
   return (
     <>
       <div className={s.profileWrap}>
@@ -28,8 +13,22 @@ const Profile = () => {
         <div className={s.profilePosts}>
           <div className={s.question}>What's new?</div>
           <div className={s.newPost}>
-            <textarea onChange={handleTextareaChange} type="text" value={state.newPostText} />
-            <button className={s.addPostBtn} onClick={handleAddPost}>
+            <textarea
+              type="text"
+              placeholder="Write something..."
+              value={state.newPostText}
+              onChange={(e) => {
+                handleChangeTextArea(e.target.value);
+              }}
+            />
+            <button
+              className={s.addPostBtn}
+              onClick={() => {
+                if (state.newPostText) {
+                  handleAddPost();
+                }
+              }}
+            >
               Add post
             </button>
           </div>

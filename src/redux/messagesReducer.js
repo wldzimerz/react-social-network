@@ -23,19 +23,22 @@ const initialState = {
 const messagesReducer = (state = initialState, action) => {
   switch (action.type) {
     case "UPDATE-NEW-MESSAGE-TEXT":
-      state.newMessageText = action.value;
-      return state;
-    case "SEND-MESSAGE":
-      if (state.newMessageText) {
-        const newMessage = {
-          text: state.newMessageText,
-          time: `${new Date().getHours()}:${new Date().getMinutes()}`,
-        };
+      return {
+        ...state,
+        newMessageText: action.value,
+      };
 
-        state.MESSAGES.push(newMessage);
-        state.newMessageText = "";
-      }
-      return state;
+    case "SEND-MESSAGE":
+      const newMessage = {
+        text: state.newMessageText,
+        time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+      };
+      return {
+        ...state,
+        MESSAGES: [...state.MESSAGES, newMessage],
+        newMessageText: "",
+      };
+
     default:
       return state;
   }

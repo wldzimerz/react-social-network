@@ -7,19 +7,11 @@ import App from "./App";
 
 import "./index.css";
 
-const rerenderEntireTree = (store) => {
-  ReactDOM.render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <App store={store} />
-      </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById("root")
-  );
-};
-
-rerenderEntireTree(store);
-
-store.subscribe(() => {
-  rerenderEntireTree(store);
-});
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App store={store} />
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
