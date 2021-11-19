@@ -8,32 +8,16 @@ const PAGES = [
     to: "/profile",
   },
   {
-    page: "News",
-    to: "/news",
-  },
-  {
-    page: "Friedns",
-    to: "/friedns",
-  },
-  {
     page: "Messages",
     to: "/messages",
   },
   {
+    page: "News",
+    to: "/news",
+  },
+  {
     page: "Community",
     to: "/community",
-  },
-  {
-    page: "Photo",
-    to: "/photo",
-  },
-  {
-    page: "Video",
-    to: "/video",
-  },
-  {
-    page: "Audio",
-    to: "/audio",
   },
   {
     page: "Settings",

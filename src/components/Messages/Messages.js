@@ -1,11 +1,15 @@
 import { useRouteMatch } from "react-router-dom";
+import { useContext } from "react";
 
+import storeContext from "./../context/storeContext";
 import UserMessage from "./UserMessage/UserMessage";
 import UserChat from "./UserChat/UserChat";
 
 import s from "./Messages.module.scss";
 
-const Messages = ({ store }) => {
+const Messages = () => {
+  const store = useContext(storeContext);
+
   const match = useRouteMatch();
 
   const state = store.getState().dialogsPage;

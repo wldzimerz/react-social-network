@@ -1,8 +1,13 @@
+import { useContext } from "react";
+
+import storeContext from "./../context/storeContext";
 import ProfilePost from "./ProfilePost/ProfilePost";
 
 import s from "./Profile.module.scss";
 
-const Profile = ({ store }) => {
+const Profile = () => {
+  const store = useContext(storeContext);
+
   const state = store.getState().profilePage;
 
   const handleAddPost = () => {
