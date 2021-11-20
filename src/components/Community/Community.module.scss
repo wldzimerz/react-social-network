@@ -1,0 +1,83 @@
+.community {
+  height: 100vh;
+}
+
+.heading {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.usersList {
+  .userWrap {
+    display: flex;
+    margin: 0 auto 15px;
+    height: 70px;
+    overflow-x: auto;
+    .leftSide {
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+      width: 20%;
+      .photo {
+        margin: 0 auto;
+        width: 20%;
+      }
+      .followBtn {
+        margin: 5px auto 0;
+        button {
+          display: block;
+          border: 0.5px solid #d8d8d8;
+          border-radius: 7px;
+          color: #ffffff99;
+          background-color: #9760c4;
+          margin: 0 auto;
+          padding: 5px;
+          transition: all 0.2s ease;
+          &:hover {
+            color: #ffffff;
+          }
+        }
+      }
+    }
+    .rightSide {
+      margin: 0 0 0 10px;
+      padding: 5px 10px;
+      box-sizing: border-box;
+      border: 1px solid black;
+      border-radius: 5px;
+      width: 100%;
+      .name {
+        font-weight: bold;
+        margin: 0 auto auto 0;
+      }
+      .status {
+        opacity: 0.6;
+        margin: 20px auto 0 0;
+      }
+      .location {
+        text-align: right;
+        width: 15%;
+        margin: -45px 0 auto auto;
+      }
+    }
+  }
+}
+
+.showMoreBtn {
+  margin: 30px auto 0;
+  width: 100px;
+  button {
+    display: block;
+    border: 0.5px solid #d8d8d8;
+    border-radius: 7px;
+    color: #ffffff99;
+    background-color: #9760c4;
+    margin: 0 auto;
+    padding: 5px;
+    transition: all 0.2s ease;
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
