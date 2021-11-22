@@ -1,5 +1,8 @@
 const initialState = {
-  USERS: [],
+  users: [],
+  pageSize: 5,
+  totalUsersCount: 32, // default 0
+  currentPage: 1,
 };
 
 const communityReducer = (state = initialState, action) => {
@@ -7,7 +10,7 @@ const communityReducer = (state = initialState, action) => {
     case "TOGGLE_FOLLOW":
       return {
         ...state,
-        USERS: state.USERS.map((obj) => {
+        users: state.users.map((obj) => {
           if (obj.id === action.id) {
             return {
               ...obj,
@@ -21,7 +24,22 @@ const communityReducer = (state = initialState, action) => {
     case "SET_USERS": {
       return {
         ...state,
-        USERS: [...action.users], // if [...state.USERS, ...action.users] - 2x users on community page
+        users: action.users, // if [...state.USERS, ...action.users] - 2x users on community page
+        // totalUsersCount: action.value, // set total users count to state
+      };
+    }
+
+    case "SET_CURRENT_PAGE": {
+      return {
+        ...state,
+        currentPage: action.value,
+      };
+    }
+
+    case "SET_PAGE_SIZE": {
+      return {
+        ...state,
+        pageSize: action.value,
       };
     }
 

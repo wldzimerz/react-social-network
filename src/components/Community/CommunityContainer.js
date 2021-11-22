@@ -4,7 +4,10 @@ import Community from "./Community";
 
 const stateDataToProps = (state) => {
   return {
-    communityPage: state.communityPage,
+    users: state.communityPage.users,
+    pageSize: state.communityPage.pageSize,
+    totalUsersCount: state.communityPage.totalUsersCount,
+    currentPage: state.communityPage.currentPage,
   };
 };
 
@@ -15,6 +18,15 @@ const dispatchToProps = (dispatch) => {
     },
     setUsers: (usersData) => {
       dispatch({ type: "SET_USERS", users: usersData });
+    },
+    // setUsers: (usersData, totalCount) => { // set total users count to state
+    //   dispatch({ type: "SET_USERS", users: usersData, value: totalCount });
+    // },
+    setCurrentPage: (pageNumber) => {
+      dispatch({ type: "SET_CURRENT_PAGE", value: pageNumber });
+    },
+    increasePageSize: (number) => {
+      dispatch({ type: "SET_PAGE_SIZE", value: number });
     },
   };
 };

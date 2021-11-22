@@ -3,12 +3,26 @@
 }
 
 .heading {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   margin-bottom: 25px;
 }
 
+.pages {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  span {
+    padding: 0 5px;
+    cursor: pointer;
+  }
+  .selected {
+    font-weight: bold;
+  }
+}
+
 .usersList {
+  margin-top: 15px;
   .userWrap {
     min-width: 540px;
     display: flex;
