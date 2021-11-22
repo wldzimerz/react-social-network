@@ -11,7 +11,7 @@ const communityReducer = (state = initialState, action) => {
           if (obj.id === action.id) {
             return {
               ...obj,
-              isFollowed: !obj.isFollowed,
+              followed: !obj.followed,
             };
           }
           return obj;
