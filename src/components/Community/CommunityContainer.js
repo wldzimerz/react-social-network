@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import Community from "./Community";
+import CommunityClass from "./Community";
 
 const stateDataToProps = (state) => {
   return {
@@ -25,12 +25,12 @@ const dispatchToProps = (dispatch) => {
     setCurrentPage: (pageNumber) => {
       dispatch({ type: "SET_CURRENT_PAGE", value: pageNumber });
     },
-    increasePageSize: (number) => {
-      dispatch({ type: "SET_PAGE_SIZE", value: number });
+    increasePageSize: (count) => {
+      dispatch({ type: "INCREASE_PAGE_SIZE", value: count });
     },
   };
 };
 
-const CommunityContainer = connect(stateDataToProps, dispatchToProps)(Community);
+const CommunityContainer = connect(stateDataToProps, dispatchToProps)(CommunityClass);
 
 export default CommunityContainer;

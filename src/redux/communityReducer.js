@@ -36,7 +36,7 @@ const communityReducer = (state = initialState, action) => {
       };
     }
 
-    case "SET_PAGE_SIZE": {
+    case "INCREASE_PAGE_SIZE": {
       return {
         ...state,
         pageSize: action.value,
