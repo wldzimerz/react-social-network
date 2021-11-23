@@ -36,7 +36,8 @@ const Community = ({ users, currentPage, pageSize, totalUsersCount, setUsers, se
 
   useEffect(() => {
     request.getUsers(currentPage, pageSize, setUsers);
-  }, [currentPage, pageSize, setUsers]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={s.community}>
