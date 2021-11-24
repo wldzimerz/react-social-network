@@ -1,7 +1,7 @@
 const initialState = {
   users: [],
   pageSize: 5,
-  totalUsersCount: 32, // default 0
+  totalUsersCount: 32, // default 0, max - res.items.totalCount on reqiest class
   currentPage: 1,
   isLoading: true,
 };
@@ -25,8 +25,7 @@ const communityReducer = (state = initialState, action) => {
     case "SET_USERS": {
       return {
         ...state,
-        users: action.users, // if [...state.USERS, ...action.users] - 2x users on community page
-        // totalUsersCount: action.value, // set total users count to state
+        users: action.users,
       };
     }
 
@@ -57,5 +56,11 @@ const communityReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export const handleChangeFollowing = (userId) => ({ type: "TOGGLE_FOLLOW", id: userId });
+export const setUsers = (usersData) => ({ type: "SET_USERS", users: usersData });
+export const setCurrentPage = (pageNumber) => ({ type: "SET_CURRENT_PAGE", value: pageNumber });
+export const increasePageSize = (count) => ({ type: "INCREASE_PAGE_SIZE", value: count });
+export const toggleLoading = (boolean) => ({ type: "TOGGLE_FETCHING_DATA", value: boolean });
 
 export default communityReducer;

@@ -19,7 +19,7 @@ const Community = ({
   handleChangeFollowing,
   toggleLoading,
 }) => {
-  const putUserOnPage = function () {
+  const putUserOnPage = () => {
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
