@@ -2,12 +2,24 @@ import { useEffect } from "react";
 import cn from "classnames";
 
 import request from "./../../database/request";
-import defaultUserPhoto from "../../assets/user-profile-avatar.png";
+import Preloader from "../common/Preloader/Preloader";
 
+import defaultUserPhoto from "../../assets/user-profile-avatar.png";
 import s from "./Community.module.scss";
 
-const Community = ({ users, currentPage, pageSize, totalUsersCount, setUsers, setCurrentPage, increasePageSize, handleChangeFollowing }) => {
-  const putUserOnPage = () => {
+const Community = ({
+  users,
+  currentPage,
+  pageSize,
+  isLoading,
+  totalUsersCount,
+  setUsers,
+  setCurrentPage,
+  increasePageSize,
+  handleChangeFollowing,
+  toggleLoading,
+}) => {
+  const putUserOnPage = function () {
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -19,7 +31,7 @@ const Community = ({ users, currentPage, pageSize, totalUsersCount, setUsers, se
         className={cn({ [s.selected]: currentPage === elem })}
         onClick={() => {
           setCurrentPage(elem);
-          request.changePage(elem, pageSize, setUsers);
+          request.changePage(elem, pageSize, setUsers, toggleLoading);
         }}
       >
         {elem}
@@ -31,13 +43,17 @@ const Community = ({ users, currentPage, pageSize, totalUsersCount, setUsers, se
     let count = 5;
     let newPageSize = pageSize + count;
     increasePageSize(newPageSize);
-    request.handleChangePageSize(currentPage, setUsers, newPageSize);
+    request.handleChangePageSize(currentPage, newPageSize, setUsers, toggleLoading);
   };
 
   useEffect(() => {
-    request.getUsers(currentPage, pageSize, setUsers);
+    request.getUsers(currentPage, pageSize, setUsers, toggleLoading);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (isLoading) {
+    return <Preloader />;
+  }
 
   return (
     <div className={s.community}>
@@ -68,9 +84,11 @@ const Community = ({ users, currentPage, pageSize, totalUsersCount, setUsers, se
           </div>
         ))}
       </div>
-      <div className={s.showMoreBtn}>
-        <button onClick={handleShowMoreUsersClick}>SHOW MORE</button>
-      </div>
+      {pageSize !== 10 && (
+        <div className={s.showMoreBtn}>
+          <button onClick={handleShowMoreUsersClick}>SHOW MORE</button>
+        </div>
+      )}
     </div>
   );
 };

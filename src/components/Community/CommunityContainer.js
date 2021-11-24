@@ -8,6 +8,7 @@ const stateDataToProps = (state) => {
     pageSize: state.communityPage.pageSize,
     totalUsersCount: state.communityPage.totalUsersCount,
     currentPage: state.communityPage.currentPage,
+    isLoading: state.communityPage.isLoading,
   };
 };
 
@@ -27,6 +28,9 @@ const dispatchToProps = (dispatch) => {
     },
     increasePageSize: (count) => {
       dispatch({ type: "INCREASE_PAGE_SIZE", value: count });
+    },
+    toggleLoading: (boolean) => {
+      dispatch({ type: "TOGGLE_FETCHING_DATA", value: boolean });
     },
   };
 };

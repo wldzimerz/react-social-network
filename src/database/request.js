@@ -5,22 +5,25 @@ class Request {
     this.host = "https://social-network.samuraijs.com/api/1.0/";
   }
 
-  getUsers = (currentPage, pageSize, cb) => {
+  getUsers = (currentPage, pageSize, cb1, cb2) => {
     axios.get(`${this.host}/users?page=${currentPage}&count=${pageSize}`).then((res) => {
-      cb(res.data.items);
+      cb1(res.data.items);
+      cb2(false);
       // cb(res.data.items, res.data.totalCount); // set total users count to state
     });
   };
 
-  changePage = (pageNumber, pageSize, cb) => {
+  changePage = (pageNumber, pageSize, cb1, cb2) => {
     axios.get(`${this.host}/users?page=${pageNumber}&count=${pageSize}`).then((res) => {
-      cb(res.data.items);
+      cb1(res.data.items);
+      cb2(false);
     });
   };
 
-  handleChangePageSize = (currentPage, cb, count) => {
+  handleChangePageSize = (currentPage, count, cb1, cb2) => {
     axios.get(`${this.host}/users?page=${currentPage}&count=${count}`).then((res) => {
-      cb(res.data.items);
+      cb1(res.data.items);
+      cb2(false);
     });
   };
 }

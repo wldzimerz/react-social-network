@@ -3,6 +3,7 @@ const initialState = {
   pageSize: 5,
   totalUsersCount: 32, // default 0
   currentPage: 1,
+  isLoading: true,
 };
 
 const communityReducer = (state = initialState, action) => {
@@ -33,6 +34,7 @@ const communityReducer = (state = initialState, action) => {
       return {
         ...state,
         currentPage: action.value,
+        isLoading: true,
       };
     }
 
@@ -40,6 +42,14 @@ const communityReducer = (state = initialState, action) => {
       return {
         ...state,
         pageSize: action.value,
+        isLoading: true,
+      };
+    }
+
+    case "TOGGLE_FETCHING_DATA": {
+      return {
+        ...state,
+        isLoading: action.value,
       };
     }
 
