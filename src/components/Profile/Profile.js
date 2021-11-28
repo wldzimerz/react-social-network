@@ -11,8 +11,6 @@ import s from "./Profile.module.scss";
 const Profile = ({ profilePage: state, userProfileData, setUserProfile, handleChangeTextArea, handleAddPost, authData }) => {
   const match = useRouteMatch();
 
-  console.log(authData);
-
   let userId = match.params.userId;
 
   if (!userId) {

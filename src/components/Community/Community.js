@@ -47,6 +47,10 @@ const Community = ({
     request.handleChangePageSize(currentPage, newPageSize, setUsers, toggleLoading);
   };
 
+  const handleFollowButtonClick = (e, id) => {
+    request.setFollowUser(e.target.innerText, id, handleChangeFollowing);
+  };
+
   useEffect(() => {
     request.getUsers(currentPage, pageSize, setUsers, toggleLoading);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,11 +75,11 @@ const Community = ({
               </div>
               <div className={s.followBtn}>
                 <button
-                  onClick={() => {
-                    handleChangeFollowing(id);
+                  onClick={(e) => {
+                    handleFollowButtonClick(e, id);
                   }}
                 >
-                  {followed ? "Follow" : "Unfollow"}
+                  {followed ? "Unfollow" : "Follow"}
                 </button>
               </div>
             </div>
