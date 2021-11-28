@@ -1,4 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
+
+import request from "./../../database/request";
 
 import s from "./Navigation.module.scss";
 
@@ -25,16 +28,28 @@ const PAGES = [
   },
 ];
 
-const Navigation = () => {
+const Navigation = ({ authData, isAuth, setAuthUserData }) => {
+  useEffect(() => {
+    request.userAuthentification(setAuthUserData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <nav className={s.navigation}>
       <h4 className={s.sitename}>IN TOUCH</h4>
-      <div className={s.info}>
-        <div className={s.avatar}>
-          <img src="https://i.pinimg.com/236x/73/b0/c0/73b0c08a5d1578cb976a00d8665ffd77--all-blacks-rugby-wutang.jpg" alt="avatar" />
+      {isAuth ? (
+        <div className={s.info}>
+          <div className={s.avatar}>
+            <img src="https://i.pinimg.com/236x/73/b0/c0/73b0c08a5d1578cb976a00d8665ffd77--all-blacks-rugby-wutang.jpg" alt="avatar" />
+          </div>
+          <div className={s.username}>{authData.login}</div>
         </div>
-        <div className={s.username}>wldzimerz</div>
-      </div>
+      ) : (
+        <div className={s.login}>
+          <Link to="/login">login</Link>
+        </div>
+      )}
+
       <div className={s.links}>
         <ul>
           {PAGES.map(({ page, to }, index) => (

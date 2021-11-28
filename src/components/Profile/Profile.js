@@ -1,20 +1,22 @@
-import request from "./../../database/request";
+import { useEffect } from "react";
+import { useRouteMatch } from "react-router-dom";
 
+import request from "./../../database/request";
 import ProfilePost from "./ProfilePost/ProfilePost";
 import Preloader from "./../common/Preloader/Preloader";
 
 import defaultUserPhoto from "./../../assets/user-profile-avatar.png";
 import s from "./Profile.module.scss";
-import { useRouteMatch } from "react-router-dom";
-import { useEffect } from "react";
 
-const Profile = ({ profilePage: state, userProfileData, setUserProfile, handleChangeTextArea, handleAddPost }) => {
+const Profile = ({ profilePage: state, userProfileData, setUserProfile, handleChangeTextArea, handleAddPost, authData }) => {
   const match = useRouteMatch();
+
+  console.log(authData);
 
   let userId = match.params.userId;
 
   if (!userId) {
-    userId = 29;
+    userId = authData.id;
   }
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const Profile = ({ profilePage: state, userProfileData, setUserProfile, handleCh
       <div className={s.profileWrap}>
         <div className={s.head}>
           <div className={s.name}>{userProfileData.fullName}</div>
-          <button>FOLLOW</button>
+          {userId === authData.id ? null : <button>FOLLOW</button>}
         </div>
         <div className={s.profilePosts}>
           <div className={s.question}>What's new?</div>

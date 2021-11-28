@@ -33,6 +33,20 @@ class Request {
       cb2(false);
     });
   };
+
+  userAuthentification = (cb) => {
+    axios
+      .get(`${this.host}/auth/me`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.data.resultCode === 0) {
+          // const { id, login, email } = res.data.data;
+          cb(res.data.data);
+        }
+        // cb2(false);
+      });
+  };
 }
 
 const request = new Request();

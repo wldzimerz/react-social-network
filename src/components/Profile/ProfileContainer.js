@@ -8,6 +8,7 @@ const stateDataToProps = (state) => {
   return {
     profilePage: state.profilePage,
     userProfileData: state.profilePage.userProfileData,
+    authData: state.auth.data,
   };
 };
 
