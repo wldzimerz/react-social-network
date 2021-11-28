@@ -4,7 +4,7 @@ import s from "./Navigation.module.scss";
 
 const PAGES = [
   {
-    page: "My profile",
+    page: "Profile",
     to: "/profile",
   },
   {

@@ -16,7 +16,7 @@ const App = ({ store }) => {
         <Navigation />
         <div className="app-container">
           <Switch>
-            <Route path="/profile" render={() => <ProfileContainer />} />
+            <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
             <Route path="/news" render={() => <Posts />} />
             <Route path="/messages" render={() => <MessagesContainer />} />
             <Route path="/community" render={() => <CommunityContainer />} />

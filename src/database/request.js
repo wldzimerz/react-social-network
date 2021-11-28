@@ -13,6 +13,13 @@ class Request {
     });
   };
 
+  getUserProfile = (userId, cb1) => {
+    axios.get(`${this.host}/profile/${userId}`).then((res) => {
+      cb1(res.data);
+      // cb2(false);  // to hide the preloader
+    });
+  };
+
   changePage = (pageNumber, pageSize, cb1, cb2) => {
     axios.get(`${this.host}/users?page=${pageNumber}&count=${pageSize}`).then((res) => {
       cb1(res.data.items);

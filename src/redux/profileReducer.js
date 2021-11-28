@@ -17,17 +17,18 @@ const initialState = {
     },
   ],
   newPostText: "",
+  userProfileData: "",
 };
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "UPDATE-NEW-POST-TEXT":
+    case "UPDATE_NEW_POST_TEXT":
       return {
         ...state,
         newPostText: action.value,
       };
 
-    case "ADD-POST":
+    case "ADD_POST":
       const newPost = {
         text: state.newPostText,
         time: `${new Date().getHours()}:${new Date().getMinutes()}`,
@@ -39,9 +40,20 @@ const profileReducer = (state = initialState, action) => {
         newPostText: "",
       };
 
+    case "SET_USER_PROFILE_DATA": {
+      return {
+        ...state,
+        userProfileData: action.data,
+      };
+    }
+
     default:
       return state;
   }
 };
+
+export const handleChangeTextArea = (text) => ({ type: "UPDATE_NEW_POST_TEXT", value: text });
+export const handleAddPost = () => ({ type: "ADD_POST" });
+export const setUserProfile = (data) => ({ type: "SET_USER_PROFILE_DATA", data });
 
 export default profileReducer;

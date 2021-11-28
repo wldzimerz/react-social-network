@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import cn from "classnames";
 
 import request from "./../../database/request";
@@ -64,7 +65,9 @@ const Community = ({
           <div className={s.userWrap} key={id}>
             <div className={s.leftSide}>
               <div className={s.photo}>
-                <img src={photos.small ? photos.small : defaultUserPhoto} alt="avatar" />
+                <Link to={`/profile/${id}`}>
+                  <img src={photos.small ? photos.small : defaultUserPhoto} alt="avatar" />{" "}
+                </Link>
               </div>
               <div className={s.followBtn}>
                 <button
