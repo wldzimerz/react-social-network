@@ -47,8 +47,8 @@ const Community = ({
     request.handleChangePageSize(currentPage, newPageSize, setUsers, toggleLoading);
   };
 
-  const handleFollowButtonClick = (e, id) => {
-    request.setFollowUser(e.target.innerText, id, handleChangeFollowing);
+  const handleFollowButtonClick = (isFollow, id) => {
+    request.setFollowUser(isFollow, id, handleChangeFollowing);
   };
 
   useEffect(() => {
@@ -75,8 +75,8 @@ const Community = ({
               </div>
               <div className={s.followBtn}>
                 <button
-                  onClick={(e) => {
-                    handleFollowButtonClick(e, id);
+                  onClick={() => {
+                    handleFollowButtonClick(followed, id);
                   }}
                 >
                   {followed ? "Unfollow" : "Follow"}

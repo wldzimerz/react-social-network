@@ -48,16 +48,16 @@ class Request {
     });
   };
 
-  setFollowUser = (type, userId, cb) => {
-    switch (type) {
-      case "Follow":
+  setFollowUser = (isFollow, userId, cb) => {
+    switch (isFollow) {
+      case false:
         this.instance.post(`/follow/${userId}`).then((res) => {
           if (res.data.resultCode === 0) {
             cb(userId);
           }
         });
         break;
-      case "Unfollow":
+      case true:
         this.instance.delete(`/follow/${userId}`).then((res) => {
           if (res.data.resultCode === 0) {
             cb(userId);
