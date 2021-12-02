@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import request from "./../../database/request";
 
@@ -45,11 +45,8 @@ const Navigation = ({ authData, isAuth, setAuthUserData }) => {
           <div className={s.username}>{authData.login}</div>
         </div>
       ) : (
-        <div className={s.login}>
-          <Link to="/login">login</Link>
-        </div>
+        <div className={s.login}></div>
       )}
-
       <div className={s.links}>
         <ul>
           {PAGES.map(({ page, to }, index) => (

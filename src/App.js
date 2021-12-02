@@ -9,6 +9,7 @@ import NavigationContainer from "./components/Navigation/NavigationContainer";
 import LoginForm from "./components/LoginForm/LoginForm";
 
 import "./App.scss";
+import PrivateRoute from "./components/common/PrivateRoute/PrivateRoute";
 
 const App = ({ store }) => {
   return (
@@ -17,9 +18,9 @@ const App = ({ store }) => {
         <NavigationContainer />
         <div className="app-container">
           <Switch>
-            <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+            <PrivateRoute path="/profile/:userId?" component={ProfileContainer} />
             <Route path="/news" render={() => <Posts />} />
-            <Route path="/messages" render={() => <MessagesContainer />} />
+            <PrivateRoute path="/messages" component={MessagesContainer} />
             <Route path="/login" render={() => <LoginForm />} />
             <Route path="/community" render={() => <CommunityContainer />} />
           </Switch>

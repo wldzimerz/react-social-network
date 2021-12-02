@@ -44,6 +44,7 @@ class Request {
     this.instance.get(`/auth/me`).then((res) => {
       if (res.data.resultCode === 0) {
         cb(res.data.data);
+        localStorage.setItem("userAuth", true);
       }
     });
   };
