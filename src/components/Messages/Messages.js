@@ -1,12 +1,14 @@
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch, Redirect } from "react-router-dom";
 
 import UserMessage from "./UserMessage/UserMessage";
 import UserChat from "./UserChat/UserChat";
 
 import s from "./Messages.module.scss";
 
-const Messages = ({ dialogsPage: state, handleChangeMessage, handleSendMessage }) => {
+const Messages = ({ dialogsPage: state, handleChangeMessage, handleSendMessage, isAuth }) => {
   const match = useRouteMatch();
+
+  if (!isAuth) return <Redirect to="/login" />;
 
   return (
     <div className={s.dialogs}>

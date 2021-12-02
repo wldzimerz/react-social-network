@@ -6,6 +6,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import CommunityContainer from "./components/Community/CommunityContainer";
 import NavigationContainer from "./components/Navigation/NavigationContainer";
+import LoginForm from "./components/LoginForm/LoginForm";
 
 import "./App.scss";
 
@@ -19,6 +20,7 @@ const App = ({ store }) => {
             <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
             <Route path="/news" render={() => <Posts />} />
             <Route path="/messages" render={() => <MessagesContainer />} />
+            <Route path="/login" render={() => <LoginForm />} />
             <Route path="/community" render={() => <CommunityContainer />} />
           </Switch>
         </div>

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch, Redirect } from "react-router-dom";
 
 import request from "./../../database/request";
 import ProfilePost from "./ProfilePost/ProfilePost";
@@ -8,7 +8,7 @@ import Preloader from "./../common/Preloader/Preloader";
 import defaultUserPhoto from "./../../assets/user-profile-avatar.png";
 import s from "./Profile.module.scss";
 
-const Profile = ({ profilePage: state, userProfileData, setUserProfile, handleChangeTextArea, handleAddPost, authData }) => {
+const Profile = ({ profilePage: state, userProfileData, setUserProfile, handleChangeTextArea, handleAddPost, authData, isAuth }) => {
   const match = useRouteMatch();
 
   let userId = match.params.userId;
@@ -21,6 +21,10 @@ const Profile = ({ profilePage: state, userProfileData, setUserProfile, handleCh
     request.getUserProfile(userId, setUserProfile);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match]);
+
+  if (!isAuth) {
+    return <Redirect to="/login" />;
+  }
 
   if (!userProfileData) {
     return <Preloader />;
