@@ -5,7 +5,6 @@ import Messages from "./Messages";
 const stateDataToProps = (state) => {
   return {
     dialogsPage: state.dialogsPage,
-    isAuth: state.auth.isAuth,
   };
 };
 

@@ -1,14 +1,12 @@
-import { useRouteMatch, Redirect } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import UserMessage from "./UserMessage/UserMessage";
 import UserChat from "./UserChat/UserChat";
 
 import s from "./Messages.module.scss";
 
-const Messages = ({ dialogsPage: state, handleChangeMessage, handleSendMessage, isAuth }) => {
-  const match = useRouteMatch();
-
-  if (!isAuth) return <Redirect to="/login" />;
+const Messages = ({ dialogsPage: state, handleChangeMessage, handleSendMessage }) => {
+  const location = useLocation();
 
   return (
     <div className={s.dialogs}>
@@ -24,7 +22,7 @@ const Messages = ({ dialogsPage: state, handleChangeMessage, handleSendMessage, 
         <div className={s.users}>
           <div className={s.blockname}>Chat</div>
           {state.USERS.map((obj, index) => (
-            <UserChat to={`${match.url}/${index + 1}`} img={obj.img} time={obj.time} name={obj.name} msg={obj.msg} key={index} index />
+            <UserChat to={`${location.pathname}/${index + 1}`} img={obj.img} time={obj.time} name={obj.name} msg={obj.msg} key={index} index />
           ))}
         </div>
         <div className={s.messages}>

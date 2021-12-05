@@ -51,7 +51,7 @@ const Navigation = ({ authData, isAuth, setAuthUserData }) => {
         <ul>
           {PAGES.map(({ page, to }, index) => (
             <li key={index}>
-              <NavLink to={to} activeClassName={s.active}>
+              <NavLink to={to} activeclassname={s.active}>
                 {page}
               </NavLink>
             </li>

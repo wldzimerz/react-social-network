@@ -1,6 +1,4 @@
-// import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-
 import Profile from "./Profile";
 import { handleChangeTextArea, handleAddPost, setUserProfile } from "./../../redux/profileReducer";
 
@@ -9,7 +7,6 @@ const stateDataToProps = (state) => {
     profilePage: state.profilePage,
     userProfileData: state.profilePage.userProfileData,
     authData: state.auth.data,
-    isAuth: state.auth.isAuth,
   };
 };
 
