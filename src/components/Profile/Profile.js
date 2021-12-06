@@ -3,12 +3,23 @@ import { useMatch } from "react-router-dom";
 
 import request from "./../../database/request";
 import ProfilePost from "./ProfilePost/ProfilePost";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import Preloader from "./../common/Preloader/Preloader";
 
 import defaultUserPhoto from "./../../assets/user-profile-avatar.png";
 import s from "./Profile.module.scss";
 
-const Profile = ({ profilePage: state, userProfileData, setUserProfile, handleChangeTextArea, handleAddPost, authData }) => {
+const Profile = ({
+  profilePage: state,
+  userProfileData,
+  setUserProfile,
+  handleChangeTextArea,
+  handleAddPost,
+  authData,
+  userStatus,
+  setUserStatus,
+  handleEnterStatus,
+}) => {
   const match = useMatch("/profile/:id");
   let userId;
 
@@ -22,7 +33,8 @@ const Profile = ({ profilePage: state, userProfileData, setUserProfile, handleCh
 
   useEffect(() => {
     request.getUserProfile(userId, setUserProfile);
-  }, [match, setUserProfile, userId]);
+    request.getUserStatus(userId, setUserStatus);
+  }, [match, setUserProfile, setUserStatus, userId]);
 
   if (!userProfileData) {
     return <Preloader />;
@@ -33,9 +45,10 @@ const Profile = ({ profilePage: state, userProfileData, setUserProfile, handleCh
       <div className={s.profileWrap}>
         <div className={s.head}>
           <div className={s.name}>{userProfileData.fullName}</div>
-          {userId === authData.id ? null : <button>FOLLOW</button>}
+          {userId !== authData.id && <button>FOLLOW</button>}
         </div>
         <div className={s.profilePosts}>
+          <ProfileStatus status={userStatus} onEnterStatus={handleEnterStatus} userId={userId} setUserStatus={setUserStatus} authId={authData.id} />
           <div className={s.question}>What's new?</div>
           <div className={s.newPost}>
             <textarea
@@ -66,7 +79,7 @@ const Profile = ({ profilePage: state, userProfileData, setUserProfile, handleCh
           <div className={s.photo}>
             <img src={userProfileData.photos.large ? userProfileData.photos.large : defaultUserPhoto} alt="avatar" />
           </div>
-          <div className={s.item}>Status: {"_status"}</div>
+          {userId !== authData.id && <div className={s.item}>Status: {"_status"}</div>}
           <div className={s.item}>Location: {"_location"}</div>
           <div className={s.item}>Born: {"_born"}</div>
           <div className={s.item}>Friends: {"_friends"}</div>

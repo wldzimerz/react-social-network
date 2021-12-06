@@ -44,4 +44,7 @@ const messagesReducer = (state = initialState, action) => {
   }
 };
 
+export const handleChangeMessage = (text) => ({ type: "UPDATE-NEW-MESSAGE-TEXT", value: text });
+export const handleSendMessage = () => ({ type: "SEND-MESSAGE" });
+
 export default messagesReducer;

@@ -69,6 +69,22 @@ class Request {
         break;
     }
   };
+
+  getUserStatus = (userId, cb) => {
+    this.instance.get(`/profile/status/${userId}`).then((res) => cb(res.data));
+  };
+
+  updateUserStatus = (body, cb) => {
+    this.instance
+      .put("/profile/status/", {
+        status: body,
+      })
+      .then((res) => {
+        if (res.data.resultCode === 0) {
+          cb(body);
+        }
+      });
+  };
 }
 
 const request = new Request();

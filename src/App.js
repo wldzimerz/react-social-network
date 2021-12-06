@@ -29,6 +29,7 @@ const App = ({ store }) => {
               <Route path=":id" element={<ProfileContainer />} />
             </Route>
             <Route path="/news" element={<Posts />} />
+            <Route path="/" element={<Posts />} />
             <Route
               path="/messages"
               element={

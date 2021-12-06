@@ -7,17 +7,9 @@ const initialState = {
     { text: "Nihil, accusantium.", time: "14:54", likes: 14 },
     { text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. ", time: "09:15", likes: 0 },
   ],
-  USERINFO: [
-    {
-      photo: "https://i.pinimg.com/236x/73/b0/c0/73b0c08a5d1578cb976a00d8665ffd77--all-blacks-rugby-wutang.jpg",
-      location: "Russia, Saint-Petersburg",
-      born: "August 21, 1996",
-      website: "https://github.com/wldzimerz",
-      friends: 463,
-    },
-  ],
   newPostText: "",
   userProfileData: "",
+  userStatus: "",
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -47,6 +39,20 @@ const profileReducer = (state = initialState, action) => {
       };
     }
 
+    case "CHANGE_USER_STATUS": {
+      return {
+        ...state,
+        userStatus: action.body,
+      };
+    }
+
+    case "SET_USER_STATUS": {
+      return {
+        ...state,
+        userStatus: action.value,
+      };
+    }
+
     default:
       return state;
   }
@@ -55,5 +61,7 @@ const profileReducer = (state = initialState, action) => {
 export const handleChangeTextArea = (text) => ({ type: "UPDATE_NEW_POST_TEXT", value: text });
 export const handleAddPost = () => ({ type: "ADD_POST" });
 export const setUserProfile = (data) => ({ type: "SET_USER_PROFILE_DATA", data });
+export const setUserStatus = (body) => ({ type: "SET_USER_STATUS", body });
+export const handleEnterStatus = (text) => ({ type: "CHANGE_USER_STATUS", value: text });
 
 export default profileReducer;

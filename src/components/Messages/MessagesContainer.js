@@ -2,23 +2,19 @@ import { connect } from "react-redux";
 
 import Messages from "./Messages";
 
+import { handleChangeMessage, handleSendMessage } from "./../../redux/messagesReducer";
+
 const stateDataToProps = (state) => {
   return {
     dialogsPage: state.dialogsPage,
   };
 };
 
-const dispatchToProps = (dispatch) => {
-  return {
-    handleChangeMessage: (text) => {
-      dispatch({ type: "UPDATE-NEW-MESSAGE-TEXT", value: text });
-    },
-    handleSendMessage: () => {
-      dispatch({ type: "SEND-MESSAGE" });
-    },
-  };
+const dispatchers = {
+  handleChangeMessage,
+  handleSendMessage,
 };
 
-const MessagesContainer = connect(stateDataToProps, dispatchToProps)(Messages);
+const MessagesContainer = connect(stateDataToProps, dispatchers)(Messages);
 
 export default MessagesContainer;

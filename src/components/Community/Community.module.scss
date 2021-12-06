@@ -9,9 +9,8 @@
 }
 
 .pages {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   span {
     padding: 0 5px;
     cursor: pointer;
