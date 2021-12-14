@@ -1,9 +1,13 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 import request from "../../database/request";
+import { setAuthUserData } from "../../redux/authReducer";
 
 import s from "./LoginForm.module.scss";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <h3>Login</h3>
@@ -11,11 +15,14 @@ const LoginForm = () => {
         initialValues={{ email: "", password: "", rememberMe: false }}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           setTimeout(() => {
-            request.loginUser(values);
-            console.log(values);
+            request.loginUser(values, setAuthUserData);
             setSubmitting(false);
             resetForm({ email: "", password: "", rememberMe: false });
           }, 200);
+          setTimeout(() => {
+            navigate("/profile");
+            window.location.reload();
+          }, 400);
         }}
       >
         {({ isSubmitting }) => (

@@ -86,7 +86,7 @@ class Request {
       });
   };
 
-  loginUser = (values) => {
+  loginUser = (values, cb) => {
     this.instance
       .post(`/auth/login`, {
         email: values.email,
@@ -95,13 +95,21 @@ class Request {
       })
       .then((res) => {
         if (res.data.resultCode === 0) {
-          //   cb(values);
-          // console.log(values);
-          console.log(res);
+          this.userAuthentification(cb);
         } else {
           alert(res.data.messages);
         }
       });
+  };
+
+  logoutUser = () => {
+    this.instance.delete("auth/login").then((res) => {
+      if (res.data.resultCode === 0) {
+        localStorage.removeItem("userAuth");
+      } else {
+        alert(`${res.data.messages}, try later`);
+      }
+    });
   };
 }
 

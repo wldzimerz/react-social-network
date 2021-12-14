@@ -37,6 +37,13 @@ const Profile = ({
     request.getUserStatus(userId, setUserStatus);
   }, [match, setUserProfile, setUserStatus, userId]);
 
+  const handleLogOutClick = () => {
+    request.logoutUser();
+    setTimeout(() => {
+      window.location.reload();
+    }, 200);
+  };
+
   if (!userProfileData) {
     return <Preloader />;
   }
@@ -46,7 +53,7 @@ const Profile = ({
       <div className={s.profileWrap}>
         <div className={s.head}>
           <div className={s.name}>{userProfileData.fullName}</div>
-          {userId !== authData.id && <button>FOLLOW</button>}
+          {userId !== authData.id ? <button>FOLLOW</button> : <button onClick={handleLogOutClick}>LOG OUT</button>}
         </div>
         <div className={s.profilePosts}>
           <ProfileStatus status={userStatus} onEnterStatus={handleEnterStatus} userId={userId} setUserStatus={setUserStatus} authId={authData.id} />
