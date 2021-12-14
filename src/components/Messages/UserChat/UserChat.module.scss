@@ -1,16 +1,16 @@
 .user {
-  background-color: #d8d8d8;
-  margin: 10px 0 0 0;
-  padding: 10px;
-  display: block;
-  box-sizing: border-box;
-  transition: all 0.3s ease-in;
-  &:link,
-  &:visited {
+  a:link,
+  a:visited {
+    background-color: #d8d8d8;
+    margin: 10px 0 0 0;
+    padding: 10px;
+    display: block;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in;
     color: inherit;
     text-decoration: none;
   }
-  &:hover {
+  a:hover {
     box-shadow: -3px 0px 0px 0px #9760c4;
     background-color: #fff;
   }
@@ -33,7 +33,7 @@
     margin: 10px 0 0 0;
     opacity: 0.8;
   }
-  &.active {
+  a.active {
     box-shadow: -3px 0px 0px 0px #9760c4;
     background-color: #edd7ff;
   }

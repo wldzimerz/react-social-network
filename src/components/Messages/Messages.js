@@ -1,13 +1,10 @@
-import { useLocation } from "react-router-dom";
-
 import UserMessage from "./UserMessage/UserMessage";
 import UserChat from "./UserChat/UserChat";
 
 import s from "./Messages.module.scss";
+import { Field, Form, Formik } from "formik";
 
 const Messages = ({ dialogsPage: state, handleChangeMessage, handleSendMessage }) => {
-  const location = useLocation();
-
   return (
     <div className={s.dialogs}>
       <div className={s.head}>
@@ -22,7 +19,7 @@ const Messages = ({ dialogsPage: state, handleChangeMessage, handleSendMessage }
         <div className={s.users}>
           <div className={s.blockname}>Chat</div>
           {state.USERS.map((obj, index) => (
-            <UserChat to={`${location.pathname}/${index + 1}`} img={obj.img} time={obj.time} name={obj.name} msg={obj.msg} key={index} index />
+            <UserChat to={`/messages/`} img={obj.img} time={obj.time} name={obj.name} msg={obj.msg} key={index} index={index} />
           ))}
         </div>
         <div className={s.messages}>
@@ -33,24 +30,43 @@ const Messages = ({ dialogsPage: state, handleChangeMessage, handleSendMessage }
             ))}
           </div>
           <div className={s.sendMessageArea}>
-            <textarea
-              type="text"
-              placeholder="Write a message..."
-              value={state.newMessageText}
-              onChange={(e) => {
-                handleChangeMessage(e.target.value);
-              }}
-            />
-            <button
-              className={s.sendMsgBtn}
-              onClick={() => {
-                if (state.newMessageText) {
-                  handleSendMessage();
-                }
+            <Formik
+              initialValues={{ message: state.newMessageText }}
+              onSubmit={(values, { setSubmitting, resetForm }) => {
+                setTimeout(() => {
+                  setSubmitting(false);
+                  resetForm({ message: state.newMessageText });
+                }, 200);
               }}
             >
-              Send
-            </button>
+              {({ isSubmitting }) => (
+                <Form className={s.loginForm}>
+                  <Field
+                    component="input"
+                    name="message"
+                    type="text"
+                    placeholder="Write a message..."
+                    className={s.textInput}
+                    value={state.newMessageText}
+                    onChange={(e) => {
+                      handleChangeMessage(e.target.value);
+                    }}
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={s.sendMsgBtn}
+                    onClick={() => {
+                      if (state.newMessageText) {
+                        handleSendMessage();
+                      }
+                    }}
+                  >
+                    Send
+                  </button>
+                </Form>
+              )}
+            </Formik>
           </div>
         </div>
       </div>

@@ -31,7 +31,7 @@ const App = ({ store }) => {
             <Route path="/news" element={<Posts />} />
             <Route path="/" element={<Posts />} />
             <Route
-              path="/messages"
+              path="/messages/*"
               element={
                 <PrivateRoute>
                   <MessagesContainer />

@@ -8,6 +8,7 @@ import Preloader from "./../common/Preloader/Preloader";
 
 import defaultUserPhoto from "./../../assets/user-profile-avatar.png";
 import s from "./Profile.module.scss";
+import { Field, Form, Formik } from "formik";
 
 const Profile = ({
   profilePage: state,
@@ -51,23 +52,43 @@ const Profile = ({
           <ProfileStatus status={userStatus} onEnterStatus={handleEnterStatus} userId={userId} setUserStatus={setUserStatus} authId={authData.id} />
           <div className={s.question}>What's new?</div>
           <div className={s.newPost}>
-            <textarea
-              type="text"
-              placeholder="Write something..."
-              value={state.newPostText}
-              onChange={(e) => {
-                handleChangeTextArea(e.target.value);
-              }}
-            />
-            <button
-              onClick={() => {
-                if (state.newPostText) {
-                  handleAddPost();
-                }
+            <Formik
+              initialValues={{ post: state.newPostText }}
+              onSubmit={(values, { setSubmitting, resetForm }) => {
+                setTimeout(() => {
+                  console.log(values);
+                  setSubmitting(false);
+                  resetForm({ post: state.newPostText });
+                }, 200);
               }}
             >
-              Add post
-            </button>
+              {({ isSubmitting }) => (
+                <Form className={s.loginForm}>
+                  <Field
+                    component="textarea"
+                    name="post"
+                    type="text"
+                    placeholder="Write something..."
+                    className={s.textInput}
+                    value={state.newPostText}
+                    onChange={(e) => {
+                      handleChangeTextArea(e.target.value);
+                    }}
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    onClick={() => {
+                      if (state.newPostText) {
+                        handleAddPost();
+                      }
+                    }}
+                  >
+                    Add post
+                  </button>
+                </Form>
+              )}
+            </Formik>
           </div>
           <div className={s.earlyPosts}>
             {state.POSTDATA.map((obj, index) => (

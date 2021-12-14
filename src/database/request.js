@@ -85,6 +85,24 @@ class Request {
         }
       });
   };
+
+  loginUser = (values) => {
+    this.instance
+      .post(`/auth/login`, {
+        email: values.email,
+        password: values.password,
+        rememberMe: values.rememberMe,
+      })
+      .then((res) => {
+        if (res.data.resultCode === 0) {
+          //   cb(values);
+          // console.log(values);
+          console.log(res);
+        } else {
+          alert(res.data.messages);
+        }
+      });
+  };
 }
 
 const request = new Request();
