@@ -1,4 +1,8 @@
-function App() {
+import React from 'react';
+
+interface Props {}
+
+export const App: React.FC<Props> = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen text-red-300 bg-gradient-to-br from-gray-300 via-teal-700 to-gray-800">
       <div className="flex items-center animate-bounce">
@@ -14,7 +18,7 @@ function App() {
           <path
             d="M13.5 11.1C15.3 3.9 19.8.3 27 .3c10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 27.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"
             transform="translate(5 16)"
-          ></path>
+          />
         </svg>
       </div>
       <p className="mt-6 tracking-wide">
@@ -40,6 +44,4 @@ function App() {
       </div>
     </div>
   );
-}
-
-export default App;
+};
