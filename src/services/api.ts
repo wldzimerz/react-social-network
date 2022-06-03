@@ -55,6 +55,18 @@ export const api = {
       );
       return response;
     },
+    get_friends: async ({ friend = true, ...payload }: GetUsersRequest) => {
+      const response = await instance.get<GetUsersResponse>(
+        `users?page=${payload.page}&count=${payload.count}&friend=${friend}`,
+      );
+      return response;
+    },
+    search: async ({ page = 1, count = 10, ...payload }: GetUsersRequest) => {
+      const response = await instance.get<GetUsersResponse>(
+        `users?page=${page}&count=${count}term=${payload.term}`,
+      );
+      return response;
+    },
   },
   profile: {
     set: async (payload: SetProfileRequest) => {

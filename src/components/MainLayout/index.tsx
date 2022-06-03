@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import cn from 'classnames';
 import { RocketFilled, TeamOutlined, UserOutlined } from '@ant-design/icons';
@@ -31,10 +31,6 @@ const MENU_DATA: MenuItem[] = [
 export const MainLayout: React.FC<Props> = ({ children }) => {
   const { pathname } = useLocation();
   const isMain = pathname === '/';
-
-  const memoizedChildren = useMemo(() => {
-    return children;
-  }, []);
 
   const MENU = MENU_DATA.map(({ icon, label, path }: MenuItem) => ({
     label: <Link to={path}>{label}</Link>,
@@ -74,7 +70,7 @@ export const MainLayout: React.FC<Props> = ({ children }) => {
           <Header />
         </Layout.Header>
         <Layout.Content>
-          <div className="p-4">{memoizedChildren}</div>
+          <div className="px-4">{children}</div>
         </Layout.Content>
       </Layout>
     </Layout>

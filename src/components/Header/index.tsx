@@ -13,8 +13,6 @@ export const Header: React.FC = () => {
     () => scheme === COLOR_SCHEME_VARIANTS.DARK,
     [scheme],
   );
-  // eslint-disable-next-line no-console
-  console.log('🚀🚀🚀 ~ scheme', scheme);
 
   const checkColorScheme = () => {
     if (!setSchemeFromStorage()) {

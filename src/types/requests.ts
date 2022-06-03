@@ -9,9 +9,9 @@ export interface LoginRequest {
 
 export interface GetUsersRequest {
   count: number;
-  page: number;
-  term: User['name'];
-  friend: User['followed'];
+  page?: number;
+  term?: User['name'];
+  friend?: User['followed'];
 }
 
 export interface SetProfileRequest {

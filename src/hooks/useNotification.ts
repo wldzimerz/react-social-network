@@ -33,7 +33,7 @@ export const useNotification = () => {
         });
         break;
       case SEVERITY_LEVELS_ENUM.ERROR:
-        notification.success({
+        notification.error({
           message: customMessage ?? 'Error',
           description: description ?? '',
         });

@@ -28,7 +28,7 @@ const ROUTES: RouterItem[] = [
     Component: lazy(() => import('src/pages/community')),
   },
   {
-    path: 'profile',
+    path: '/profile',
     Component: lazy(() => import('src/pages/my_profile')),
     isProtected: true,
     subRoutes: [
