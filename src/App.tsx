@@ -4,7 +4,7 @@ import { MainLayout } from 'src/components';
 const App: React.FC = () => {
   return (
     <MainLayout>
-      <div>Main</div>
+      <div className="text-2xl">Main</div>
     </MainLayout>
   );
 };

@@ -23,7 +23,7 @@ export const LoginForm: React.FC = () => {
     try {
       const { data } = await api.auth.login(values);
       if (data.resultCode === 0) {
-        writeStorage('in_touch_auth_id', data.data.userId);
+        writeStorage.auth(data.data.userId);
         sendNotification(levels.SUCCESS);
         setTimeout(() => {
           navigate('/profile');
