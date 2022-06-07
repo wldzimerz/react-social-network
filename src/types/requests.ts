@@ -1,3 +1,4 @@
+import Profile from 'src/models/Profile';
 import User from 'src/models/User';
 
 export interface LoginRequest {
@@ -14,22 +15,7 @@ export interface GetUsersRequest {
   friend?: User['followed'];
 }
 
-export interface SetProfileRequest {
-  userId: User['id'];
-  fullName: User['name'];
-  lookingForAJob: boolean;
-  lookingForAJobDescription: string;
-  contacts?: {
-    github?: string;
-    vk?: string;
-    facebook?: string;
-    instagram?: string;
-    twitter?: string;
-    website?: string;
-    youtube?: string;
-    mainLink?: string;
-  };
-}
+export interface SetProfileRequest extends Partial<Profile> {}
 
 export interface SetProfilePhotoRequest {
   image: FormData;

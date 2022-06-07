@@ -1,3 +1,4 @@
+import Profile from 'src/models/Profile';
 import User from 'src/models/User';
 
 export interface LoginResponse {
@@ -51,26 +52,7 @@ export interface SetProfileStatusResponse {
   data: any;
 }
 
-export interface GetProfileResponse {
-  userId: User['id'];
-  fullName: User['name'];
-  lookingForAJob: boolean;
-  lookingForAJobDescription: string;
-  contacts: {
-    github?: string;
-    vk?: string;
-    facebook?: string;
-    instagram?: string;
-    twitter?: string;
-    website?: string;
-    youtube?: string;
-    mainLink?: string;
-  };
-  photos: {
-    small: string | null;
-    large: string | null;
-  };
-}
+export interface GetProfileResponse extends Profile {}
 
 export interface GetProfileStatusResponse {
   status: string;

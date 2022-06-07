@@ -44,9 +44,9 @@ export const Header: React.FC = () => {
         <Tooltip
           title={
             <span>
-              Swith to{' '}
+              Switch to
               <span className="font-bold">
-                {isDarkMode ? 'light ' : 'dark '}
+                {isDarkMode ? ' light ' : ' dark '}
               </span>
               mode
             </span>

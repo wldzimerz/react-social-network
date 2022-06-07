@@ -13,10 +13,10 @@ const isLight = window.matchMedia?.('(prefers-color-scheme: light)').matches;
 export const useColorScheme = () => {
   const { readStorage, writeStorage } = useStorage();
 
-  const colorChemeFromStorage = readStorage.color() as COLOR_SCHEME_VARIANTS;
+  const colorSchemeFromStorage = readStorage.color() as COLOR_SCHEME_VARIANTS;
 
   const [scheme, setSchemeState] = useState<COLOR_SCHEME_VARIANTS>(
-    colorChemeFromStorage,
+    colorSchemeFromStorage,
   );
 
   const setScheme = (scheme: COLOR_SCHEME_VARIANTS) => {
@@ -25,10 +25,10 @@ export const useColorScheme = () => {
   };
 
   const setSchemeFromStorage = () => {
-    if (colorChemeFromStorage === COLOR_SCHEME_VARIANTS.DARK) {
+    if (colorSchemeFromStorage === COLOR_SCHEME_VARIANTS.DARK) {
       setScheme(COLOR_SCHEME_VARIANTS.DARK);
       return true;
-    } else if (colorChemeFromStorage === COLOR_SCHEME_VARIANTS.LIGHT) {
+    } else if (colorSchemeFromStorage === COLOR_SCHEME_VARIANTS.LIGHT) {
       setScheme(COLOR_SCHEME_VARIANTS.LIGHT);
       return true;
     }
