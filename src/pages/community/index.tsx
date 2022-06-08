@@ -18,12 +18,12 @@ const CommunityPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [users, setUsers] = useState<User[]>([]);
   const [params] = useSearchParams();
-  const page = Number(params.get('page'));
-  const count = Number(params.get('count'));
+  const pageFromQuery = Number(params.get('page'));
+  const countFromQuery = Number(params.get('count'));
 
   const initialPaginationSettings: LocalPaginationSettings = {
-    page: page ?? 1,
-    count: count ?? 5,
+    page: pageFromQuery !== 0 ? pageFromQuery : 1,
+    count: countFromQuery !== 0 ? countFromQuery : 5,
     total: null,
   };
 
