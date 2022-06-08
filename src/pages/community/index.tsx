@@ -2,7 +2,7 @@ import { TrophyOutlined } from '@ant-design/icons';
 import { Avatar, Card, Pagination } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { MainLayout, Preloader } from 'src/components';
 import { useNotification } from 'src/hooks';
 import User from 'src/models/User';
@@ -17,10 +17,13 @@ interface LocalPaginationSettings {
 const CommunityPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [users, setUsers] = useState<User[]>([]);
+  const [params] = useSearchParams();
+  const page = Number(params.get('page'));
+  const count = Number(params.get('count'));
 
   const initialPaginationSettings: LocalPaginationSettings = {
-    page: 1,
-    count: 5,
+    page: page ?? 1,
+    count: count ?? 5,
     total: null,
   };
 
@@ -29,6 +32,11 @@ const CommunityPage: React.FC = () => {
 
   const navigate = useNavigate();
   const { levels, sendNotification } = useNotification();
+
+  const handleUserClick = (id: number) => {
+    const { page, count } = paginationSettings;
+    navigate(`${id}?fromPage=${page}&fromCount=${count}`);
+  };
 
   const loadUsers = async () => {
     try {
@@ -41,9 +49,9 @@ const CommunityPage: React.FC = () => {
       } else {
         sendNotification(levels.ERROR, data.error);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      sendNotification(levels.ERROR);
+      sendNotification(levels.ERROR, error?.message);
     } finally {
       setLoading(false);
     }
@@ -74,7 +82,7 @@ const CommunityPage: React.FC = () => {
                 <div className="my-2" key={id}>
                   <Card
                     hoverable
-                    onClick={() => navigate(`${id}`)}
+                    onClick={() => handleUserClick(id)}
                     title={
                       <div className="flex items-center">
                         <Avatar src={photos.small} className="!bg-main_blue">

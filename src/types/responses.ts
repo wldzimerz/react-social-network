@@ -54,9 +54,7 @@ export interface SetProfileStatusResponse {
 
 export interface GetProfileResponse extends Profile {}
 
-export interface GetProfileStatusResponse {
-  status: string;
-}
+export type GetProfileStatusResponse = string;
 
 export interface FollowUserResponse {
   resultCode: number;
