@@ -18,27 +18,48 @@ import dayjs from 'dayjs';
 import cn from 'classnames';
 import Profile from 'src/models/Profile';
 import { VKIcon } from 'src/assets/icons';
+import { IPost } from 'src/components/Post';
 
-const MOCK_POSTS = [
+const MOCK_POSTS: IPost[] = [
   {
     content:
       'Obsessing with “clean code” and removing duplication is a phase many of us go through. When we don’t feel confident in our code, it is tempting to attach our sense of self-worth and professional pride to something that can be measured. A set of strict lint rules, a naming schema, a file structure, a lack of duplication.',
     datetime: '2021-03-05T14:48:00.000Z',
+    marks: {
+      likes: 100,
+      dislikes: 37,
+      comments: 10,
+    },
   },
   {
     content:
       'Coding is a journey. Think how far you came from your first line of code to where you are now. I reckon it was a joy to see for the first time how extracting a function or refactoring a class can make convoluted code simple. If you find pride in your craft, it is tempting to pursue cleanliness in code. Do it for a while.',
     datetime: '2022-03-03T18:48:00.000Z',
+    marks: {
+      likes: 10,
+      dislikes: 2,
+      comments: 3,
+    },
   },
   {
     content:
       'Using the children prop to split up components usually makes the data flow of your application easier to follow and reduces the number of props plumbed down through the tree. Improved performance in cases like this is a cherry on top, not the end goal.',
     datetime: '2021-03-05T16:48:00.000Z',
+    marks: {
+      likes: 10,
+      dislikes: 2,
+      comments: 3,
+    },
   },
   {
     content:
       'Wait, what?! If the attacker can modify my app’s source code, they’ll probably just put a bitcoin miner in it. Why would they add SVG files into my app, unless you can mine bitcoins with SVG? Again, this doesn’t make any sense.',
     datetime: '2022-01-22T07:48:00.000Z',
+    marks: {
+      likes: 10,
+      dislikes: 2,
+      comments: 3,
+    },
   },
 ];
 
@@ -53,9 +74,6 @@ const UserProfile: React.FC = () => {
   const [params] = useSearchParams();
   const fromPage = params.get('fromPage');
   const fromCount = params.get('fromCount');
-
-  // eslint-disable-next-line no-console
-  console.log('contact: ', Object.entries(contacts));
 
   const loadCurrentUser = async () => {
     if (!userId) return;
@@ -81,7 +99,6 @@ const UserProfile: React.FC = () => {
       }
     } catch (error) {
       console.error(error);
-      sendNotification(levels.ERROR);
     }
   };
 
@@ -97,7 +114,6 @@ const UserProfile: React.FC = () => {
       }
     } catch (error) {
       console.error(error);
-      sendNotification(levels.ERROR);
     }
   };
 
@@ -157,14 +173,9 @@ const UserProfile: React.FC = () => {
           {!!MOCK_POSTS.length &&
             MOCK_POSTS.sort((a, b) =>
               dayjs(a.datetime).isBefore(dayjs(b.datetime)) ? 1 : -1,
-            ).map(({ datetime, content }, i) => (
-              <div className={cn({ 'mt-3': i !== 0 })} key={datetime}>
-                <Post
-                  author={fullName!}
-                  content={content}
-                  datetime={datetime}
-                  avatar={photos.small!}
-                />
+            ).map((p, i) => (
+              <div className={cn({ 'mt-3': i !== 0 })} key={p.datetime}>
+                <Post author={fullName!} post={p} avatar={photos.small!} />
               </div>
             ))}
         </div>

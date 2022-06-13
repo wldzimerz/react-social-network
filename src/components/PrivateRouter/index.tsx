@@ -7,8 +7,7 @@ interface Props {
 }
 
 export const PrivateRouter: React.FC<Props> = ({ children }) => {
-  const { readStorage } = useStorage();
-  const isAuth = !!readStorage.auth();
+  const { isAuth } = useStorage();
 
   if (!isAuth) return <Navigate to="/login" />;
 

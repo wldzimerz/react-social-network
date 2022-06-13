@@ -28,7 +28,10 @@ export const useStorage = () => {
     localStorage.removeItem(name);
   };
 
+  const isAuth = !!readStorage.auth();
+
   return {
+    isAuth,
     writeStorage,
     readStorage,
     clearStorage,

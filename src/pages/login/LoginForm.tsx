@@ -9,7 +9,7 @@ import { api } from 'src/services';
 export const LoginForm: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
-  const { writeStorage } = useStorage();
+  const { writeStorage, isAuth } = useStorage();
   const { levels, sendNotification } = useNotification();
 
   const initialValues = {
@@ -51,37 +51,52 @@ export const LoginForm: React.FC = () => {
         size="large"
         className="flex flex-col items-center min-w-full"
       >
-        <Form.Item
-          name="email"
-          rules={[{ required: true, message: 'Please enter your email' }]}
-        >
-          <Input
-            type="email"
-            placeholder="E-mail"
-            style={{ width: 360 }}
-            allowClear
-          />
-        </Form.Item>
+        {!isAuth ? (
+          <>
+            <Form.Item
+              name="email"
+              rules={[{ required: true, message: 'Please enter your email' }]}
+            >
+              <Input
+                type="email"
+                placeholder="E-mail"
+                style={{ width: 360 }}
+                allowClear
+              />
+            </Form.Item>
 
-        <Form.Item
-          name="password"
-          rules={[{ required: true, message: 'Please enter your password' }]}
-        >
-          <Input.Password placeholder="Password" style={{ width: 360 }} />
-        </Form.Item>
+            <Form.Item
+              name="password"
+              rules={[
+                { required: true, message: 'Please enter your password' },
+              ]}
+            >
+              <Input.Password placeholder="Password" style={{ width: 360 }} />
+            </Form.Item>
 
-        <Form.Item name="rememberMe" valuePropName="checked">
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
+            <Form.Item name="rememberMe" valuePropName="checked">
+              <Checkbox>Remember me</Checkbox>
+            </Form.Item>
 
-        <Button
-          type="primary"
-          loading={loading}
-          htmlType="submit"
-          className="w-32"
-        >
-          Sign in
-        </Button>
+            <Button
+              type="primary"
+              loading={loading}
+              htmlType="submit"
+              className="w-32"
+            >
+              Sign in
+            </Button>
+          </>
+        ) : (
+          <>
+            <span className="text-xl mb-10 p-12 font-thin">
+              You already logged in!
+            </span>
+            <Button type="primary" onClick={() => navigate('/community')}>
+              Go to our community
+            </Button>
+          </>
+        )}
       </Form>
     </div>
   );
