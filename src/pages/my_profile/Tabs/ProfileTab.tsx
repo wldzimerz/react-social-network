@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNotification } from 'src/hooks';
+import { Helmet } from 'react-helmet';
 import Profile from 'src/models/Profile';
 import { api } from 'src/services';
 
@@ -31,7 +32,7 @@ export const ProfileTab: React.FC = () => {
   const { levels, sendNotification } = useNotification();
   // eslint-disable-next-line no-console
   console.log('🚀🚀🚀 ~ myProfile', myProfile);
-  const myId = 21050;
+  const myId = 21050; // TODO from global state
 
   const loadMyProfile = async () => {
     try {
@@ -47,5 +48,10 @@ export const ProfileTab: React.FC = () => {
     loadMyProfile();
   }, []);
 
-  return <div className="bg-white">ProfileTab</div>;
+  return (
+    <>
+      <Helmet title="IN TOUCH | Profile" />
+      <div className="bg-white">ProfileTab</div>;
+    </>
+  );
 };

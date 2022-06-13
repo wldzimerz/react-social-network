@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 interface Props {
   fullScreen?: boolean;
-  size?: 'large' | 'middle' | 'small';
+  size?: 'large' | 'medium' | 'small';
   className?: string;
 }
 
@@ -23,7 +23,7 @@ export const Preloader: React.FC<Props> = ({
         <AimOutlined
           className={cn('fill-current animate-spin opacity-50', {
             'text-xl': size === 'small',
-            'text-3xl': size === 'middle',
+            'text-3xl': size === 'medium',
             'text-6xl': size === 'large',
           })}
         />
