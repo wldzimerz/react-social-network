@@ -99,68 +99,137 @@ export const EditProfileTab: React.FC = () => {
     loadUserStatus();
   }, []);
 
-  if (loading) return <Preloader fullScreen={false} size="medium" />;
+  if (loading)
+    return (
+      <Preloader
+        fullScreen={false}
+        size="large"
+        className="text-center mt-20"
+      />
+    );
 
   return (
     <>
       <Helmet title="IN TOUCH | Edit Profile" />
-      <div className="font-medium text-2xl">Edit profile</div>
 
-      <Input
-        value={userStatus}
-        onChange={e => setUserStatus(e.target.value)}
-        allowClear
-      />
-      <Button type="ghost" onClick={handleUpdateStatus}>
-        Update status
-      </Button>
+      <div className="flex items-center">
+        <Input
+          value={userStatus}
+          onChange={e => setUserStatus(e.target.value)}
+          size="large"
+          maxLength={300}
+          className="mr-20"
+          allowClear
+          showCount
+        />
+        <Button type="ghost" onClick={handleUpdateStatus} size="large">
+          Update status
+        </Button>
+      </div>
 
       <Form
         initialValues={profileFields}
         onFinish={handleSubmitForm}
-        size="small"
-        layout="horizontal"
+        size="middle"
+        layout="vertical"
       >
-        <Form.Item name="fullName">
-          <Input placeholder="Full name" size="small" />
-        </Form.Item>
-        <Form.Item name="aboutMe">
-          <Input.TextArea size="middle" placeholder="About me" />
-        </Form.Item>
+        <div className="flex justify-between mt-3">
+          <div className="w-[48%]">
+            <span className="font-bold text-xl text-center block">
+              General Info
+            </span>
+            <Form.Item
+              name="fullName"
+              label="Full name"
+              rules={[{ required: true, message: 'Name is required!' }]}
+            >
+              <Input placeholder="Full name" />
+            </Form.Item>
+            <Form.Item name="aboutMe" label="About">
+              <Input.TextArea
+                size="middle"
+                placeholder="About me"
+                className="resize-none"
+              />
+            </Form.Item>
+            <Form.Item name="lookingForAJob" valuePropName="checked">
+              <Checkbox>Looking for a Job</Checkbox>
+            </Form.Item>
+            <Form.Item
+              name="lookingForAJobDescription"
+              label="Looking for a job description"
+              rules={[{ required: true, message: 'Description is required!' }]}
+            >
+              <Input.TextArea
+                placeholder="Pleasе type a transmittal letter"
+                className="resize-none"
+              />
+            </Form.Item>
+          </div>
 
-        <span>Your contacts</span>
-        <Form.Item name={['contacts', 'mainLink']}>
-          <Input placeholder="Main link" prefix={<GlobalOutlined />} />
-        </Form.Item>
-        <Form.Item name={['contacts', 'website']}>
-          <Input placeholder="Personal website" prefix={<GlobalOutlined />} />
-        </Form.Item>
-        <Form.Item name={['contacts', 'github']}>
-          <Input placeholder="Github" prefix={<GithubOutlined />} />
-        </Form.Item>
-        <Form.Item name={['contacts', 'vk']}>
-          <Input placeholder="VKontakte" prefix={<VKIcon />} />
-        </Form.Item>
-        <Form.Item name={['contacts', 'facebook']}>
-          <Input placeholder="Facebook" prefix={<FacebookOutlined />} />
-        </Form.Item>
-        <Form.Item name={['contacts', 'twitter']}>
-          <Input placeholder="Twitter" prefix={<TwitterOutlined />} />
-        </Form.Item>
-        <Form.Item name={['contacts', 'instagram']}>
-          <Input placeholder="Instagram" prefix={<InstagramOutlined />} />
-        </Form.Item>
-        <Form.Item name={['contacts', 'youtube']}>
-          <Input placeholder="YouTube" prefix={<YoutubeOutlined />} />
-        </Form.Item>
-        <Form.Item name="lookingForAJob" valuePropName="checked">
-          <Checkbox>Looking for a Job</Checkbox>
-        </Form.Item>
-        <Form.Item name="lookingForAJobDescription">
-          <Input.TextArea placeholder="Pleasе type a transmittal letter" />
-        </Form.Item>
+          <div className="w-[48%]">
+            <span className="font-bold text-xl text-center block">
+              Your Contacts
+            </span>
+            <Form.Item name={['contacts', 'mainLink']} label="Main link">
+              <Input
+                prefix={<GlobalOutlined className="text-xl mr-2" />}
+                placeholder="https://main-link.com/"
+              />
+            </Form.Item>
+            <Form.Item name={['contacts', 'website']} label="Personal website">
+              <Input
+                prefix={<GlobalOutlined className="text-xl mr-2" />}
+                placeholder="https://ws.com/"
+              />
+            </Form.Item>
+            <Form.Item name={['contacts', 'github']} label="Github">
+              <Input
+                prefix={<GithubOutlined className="text-xl mr-2" />}
+                placeholder="https://github.com/user"
+              />
+            </Form.Item>
+            <Form.Item name={['contacts', 'vk']} label="VKontakte">
+              <Input
+                prefix={<VKIcon className="mr-2" />}
+                placeholder="https://vk.com/id00000001"
+              />
+            </Form.Item>
+            <Form.Item name={['contacts', 'facebook']} label="Facebook">
+              <Input
+                prefix={<FacebookOutlined className="text-xl mr-2" />}
+                placeholder="https://facebook.com/user"
+              />
+            </Form.Item>
+            <Form.Item name={['contacts', 'twitter']} label="Twitter">
+              <Input
+                prefix={<TwitterOutlined className="text-xl mr-2" />}
+                placeholder="https://twitter.com/user"
+              />
+            </Form.Item>
+            <Form.Item name={['contacts', 'instagram']} label="Instagram">
+              <Input
+                prefix={<InstagramOutlined className="text-xl mr-2" />}
+                placeholder="https://instagram.com/user"
+              />
+            </Form.Item>
+            <Form.Item name={['contacts', 'youtube']} label="YouTube">
+              <Input
+                prefix={<YoutubeOutlined className="text-xl mr-2" />}
+                placeholder="https://youtube.com/user"
+              />
+            </Form.Item>
 
-        <Button htmlType="submit">Update profile</Button>
+            <Button
+              htmlType="submit"
+              type="primary"
+              className="mx-auto"
+              size="large"
+            >
+              Update profile
+            </Button>
+          </div>
+        </div>
       </Form>
     </>
   );

@@ -51,7 +51,7 @@ export const ProfileTab: React.FC = () => {
   return (
     <>
       <Helmet title="IN TOUCH | Profile" />
-      <div className="bg-white">ProfileTab</div>;
+      <div>ProfileTab</div>
     </>
   );
 };
